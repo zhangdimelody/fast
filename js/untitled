@@ -1,0 +1,271 @@
+let createStars = () => {
+  /*背景星星*/
+  var particles = 1000; //星星数量
+  /*buffer做星星*/
+  var bufferGeometry = new THREE.BufferGeometry();
+
+  var positions = new Float32Array(particles * 3);
+  var colors = new Float32Array(particles * 3);
+
+  var color = new THREE.Color();
+
+  var gap = 800; // 定义星星的最近出现位置
+
+  for (var i = 0; i < positions.length; i += 3) {
+
+    // positions
+
+    /*-2gap < x < 2gap */
+    var x = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1);
+    var y = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1);
+    var z = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1);
+
+    /*找出x,y,z中绝对值最大的一个数*/
+    var biggest = Math.abs(x) > Math.abs(y) ? Math.abs(x) > Math.abs(z) ? 　'x' : 'z' :
+      Math.abs(y) > Math.abs(z) ? 'y' : 'z';
+
+    var pos = {
+      x: x,
+      y: y,
+      z: z
+    };
+
+    /*如果最大值比n要小（因为要在一个距离之外才出现星星）则赋值为n（-n）*/
+    if (Math.abs(pos[biggest]) < gap) pos[biggest] = pos[biggest] < 0 ? -gap : gap;
+
+    x = pos['x'];
+    y = pos['y'];
+    z = pos['z'];
+
+    positions[i] = x;
+    positions[i + 1] = y;
+    positions[i + 2] = z;
+
+    // colors
+    /*50%星星有颜色*/
+    var hasColor = Math.random() > 0.6;
+    var vx, vy, vz;
+
+    if (hasColor) {
+      vx = (Math.random() + 1) / 2;
+      vy = (Math.random() + 1) / 2;
+      vz = (Math.random() + 1) / 2;
+    } else {
+      vx = 1;
+      vy = 1;
+      vz = 1;
+    }
+
+    /*var vx = ( Math.abs(x) / n*2 ) ;
+    var vy = ( Math.abs(y) / n*2 ) ;
+    var vz = ( Math.abs(z) / n*2 ) ;*/
+
+    color.setRGB(vx, vy, vz);
+
+    colors[i] = color.r;
+    colors[i + 1] = color.g;
+    colors[i + 2] = color.b;
+  }
+
+  bufferGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+  bufferGeometry.addAttribute('color', new THREE.BufferAttribute(colors, 3));
+  bufferGeometry.computeBoundingSphere();
+
+  /*星星的material*/
+  var material = new THREE.PointsMaterial({
+    size: 3,
+    vertexColors: THREE.VertexColors
+  });
+  var particleSystem = new THREE.Points(bufferGeometry, material);
+  particleSystem.name = "starrr"
+  scene.add(particleSystem);
+}
+
+
+let creatSkyJS = () => {
+  let loader = new THREE.JSONLoader();
+  loader.load("./object/star03.js", function(geometry) {
+    model = new THREE.Mesh(geometry, driller_texture); // driller texture is a texture You define earlier..
+    model.position.set(0, 0, 0); // center of scene
+    matr = new THREE.Matrix4();
+    model.matrixAutoUpdate = false;
+    model.geometry.applyMatrix(matr.makeRotationY(0)); // not necessary
+    model.scale.set(0.5, 0.5, 0.5); // if You export in a scale of 1, You want to go for this scale ;>
+    scene.add(driller);
+  });
+}
+
+let createModel = () => {
+  let cubeGeometry = new THREE.BoxBufferGeometry(10, 10, 10);
+  let cubeTexture = new THREE.TextureLoader().load('./texture/img/crate.gif');
+  let cubeMater = new THREE.MeshBasicMaterial({
+    map: cubeTexture
+  });
+  let cubeMesh = new THREE.Mesh(cubeGeometry, cubeMater);
+  cubeMesh.position.set(50, 0, 0);
+  cubeMesh.name = "here's a box";
+  group.add(cubeMesh);
+}
+
+let createSky = () => {
+  var onProgress = function(xhr) {
+    if (xhr.lengthComputable) {
+      var percentComplete = xhr.loaded / xhr.total * 100;
+      console.log(Math.round(percentComplete, 2) + '% downloaded');
+    }
+  };
+  var onError = function(xhr) {};
+
+  THREE.Loader.Handlers.add(/\.dds$/i, new DDSLoader());
+  var mtlLoader = new MTLLoader();
+  mtlLoader.setBaseUrl('./object/tex/');
+  mtlLoader.load('./object/star05.mtl', function(materials) {
+
+    materials.preload();
+    console.log(materials);
+
+    var objLoader = new OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.load('./object/star05.obj', function(object) {
+
+      object.name = "stars";
+      console.log(object);
+      group.add(object);
+      // group.children.concat(object.children);
+    }, onProgress, onError);
+
+    // let loader = new THREE.JSONLoader();
+    // loader.load("./object/star03.js", function(geometry,materials) {
+    //   console.log("geometry")
+    //   console.log(geometry)
+    //   console.log(materials)
+    //   let model = new THREE.Mesh(geometry, materials); // driller texture is a texture You define earlier..
+    //   model.position.set(0, 0, 0); // center of scene
+    //   let matr = new THREE.Matrix4();
+    //   model.matrixAutoUpdate = false;
+    //   model.geometry.applyMatrix(matr.makeRotationY(0)); // not necessary
+    //   // model.scale.set(0.5, 0.5, 0.5); // if You export in a scale of 1, You want to go for this scale ;>
+    //   group.add(model);
+    // });
+
+  });
+
+}
+
+let createBac = () => {
+  let map = new THREE.TextureLoader().load( '../object/tex/bac.jpg' );
+  let material = new THREE.MeshPhongMaterial( { map: map, side: THREE.DoubleSide } );
+  let obj = new THREE.Mesh( new THREE.SphereGeometry( 500, 10, 10 ), material );
+  obj.position.set( 0, 0, 0 );
+  group.add( object );
+}
+
+const modelInfos = [{
+  name: "earth",
+  geometry: "sphere",
+  material: "",
+  radius: 80
+}]
+
+
+var lastTimestamp = 0;
+var progress = 0;
+let kfAnimations = [],
+  kfAnimationsLength;
+
+let animate = (timestamp) => {
+  var frameTime = (timestamp - lastTimestamp) * 0.001;
+
+  if (progress >= 0 && progress < 48) {
+    for (var i = 0; i < kfAnimationsLength; ++i) {
+      kfAnimations[i].update(frameTime);
+    }
+  } else if (progress >= 48) {
+    for (var i = 0; i < kfAnimationsLength; ++i) {
+      kfAnimations[i].stop();
+    }
+    progress = 0;
+    // start();
+  }
+
+  progress += frameTime;
+  lastTimestamp = timestamp;
+
+  requestAnimationFrame(animate);
+  render();
+}
+animate(lastTimestamp);
+
+
+animations = collada.animations;
+kfAnimationsLength = collada.animations.length;
+
+for (var i = 0; i < kfAnimationsLength; i++) {
+  var animation = animations[i];
+  var keyframeAnimation = new KeyFrameAnimation(animation);
+  keyframeAnimation.timeScale = 1;
+  kfAnimations.push(keyframeAnimation);
+}
+// debugger
+
+
+var tween = new TWEEN.Tween(camera.position).to({
+    x: 0,
+    y: 0,
+    z: 0
+  }, 600)
+  .wait(500)
+  .to({
+    x: tweenPos.x,
+    y: tweenPos.y,
+    z: tweenPos.z
+  }, 600).easing(TWEEN.Easing.Linear.None).onUpdate(function() {
+
+  }).onComplete(function() {
+
+  }).start();
+
+
+
+var tween = new TWEEN.Tween(controls.target).to({
+    x: 0,
+    y: 0,
+    z: -1
+  }, 600)
+  .wait(500)
+  .to({
+    x: tweenPos.x,
+    y: tweenPos.y,
+    z: tweenPos.z + 0.001
+  }, 600).easing(TWEEN.Easing.Linear.None).onUpdate(function() {
+    // camera.up = new THREE.Vector3(0, 1, 0);
+    // camera.lookAt(focusObj.position);
+  }).onComplete(function() {
+    // camera.up = new THREE.Vector3(0, 1, 0);
+    // camera.lookAt(focusObj.position);
+  }).start();
+
+
+
+var tween = new TWEEN.Tween(camera.position).to({
+  x: cameraPosition.x,
+  y: cameraPosition.y,
+  z: cameraPosition.z
+}, 700).easing(TWEEN.Easing.Linear.None).onComplete(function() {
+  camera.up = new THREE.Vector3(0, 1, 0);
+  camera.lookAt(-95, -38, -1);
+  camera.updateProjectionMatrix();
+}).start();
+// var tween = new TWEEN.Tween(controls.target).to({
+//   x: cameraPosition.x,
+//   y: cameraPosition.y,
+//   z: cameraPosition.z -1
+// }, 700).easing(TWEEN.Easing.Linear.None).onUpdate(function() {
+
+// }).onComplete(function() {
+//   camera.up = new THREE.Vector3(0, 1, 0);
+//   camera.lookAt(-95, -38, -1);
+//   camera.updateProjectionMatrix();
+controls.target.set(0, 0, -1)
+
+// }).start();
