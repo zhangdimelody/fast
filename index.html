@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>FAST</title>
   
   <link rel="stylesheet" type="text/css" href="./dist/index.css">
   <script type="text/javascript" src="./dist/adjust-screen.js"></script>
 </head>
 <body>
-  <div class="loading">
+  <div class="loading ">
     <div class="loading-guo"></div>
     <div class="loading-text"><span>0</span>%</div>
   </div>
 <!-- cover start -->
+  <div class="music on " curplay="audio3"></div>
   <div class="big-wrap displaynone">
-    <div class="chuansuo"></div>
-    <div class="cover-bac">
+    <div class="chuansuo gif"></div>
+    <div class="cover-bac ">
       <div class="logo"></div>
-      <div class="music"></div>
 
-      <div class="info-wrap">
+      <div class="info-wrap displaynone">
         <span class="info1">
           这是FAST——500米口径球面射电望远镜，是具有中国自主知识产权、世界最大单口径、最灵敏的射电望远镜，被誉为“中国天眼”。
         </span>
@@ -32,12 +30,18 @@
           咦，FAST信号异常！！！
         </span>
       </div>
-      <div class="tit"></div> 
-      <div class="xinhao"></div>
+      <div class="tit-wrap">
+        <div class="tit"></div> 
+        <div class="bowen"></div>
+        <div class="start-btn start-animate">
+          <div class="start"></div>
+        </div>
+      </div>
+      <div class="xinhao displaynone"></div>
       
-      <div class="part3">
+      <div class="part3 displaynone">
         <div class='xinhao-fashe'></div>
-        <div class="start-btn">
+        <div class="start-btn start-chuansuo">
           <div class="start"></div>
         </div>
       </div>
@@ -55,23 +59,30 @@
       </div>
       <div class="tips">点击屏幕返回</div>
     </div>
-    <div class="guo">
+    <div class="guo displaynone">
       <div class="guotip hide"></div>
     </div>
     <div class="xinhaoshowtip hide"></div>
+    <div class="find-xinhaoshowtip"></div>
+    <div class="s-tips displaynone">点击星球，寻找ET～</div>
 
     <div class="end-wrap hide">
       <div class="waixingren"></div>
-      <div class="btn-wrap">
-        <span class="continue"></span>
-        <span class="share"></span>
+      <div class="tips hide">想知道这是什么生物吗？来《了不起的中国制造》继续探索啊！</div>
+    
+      <div class="last-page displaynone">
+        <div class="btn-wrap">
+          <span class="continue"></span>
+          <span class="share"></span>
+          <div class="end-logo"></div>
+        </div>
       </div>
-      <div class="end-logo"></div>
     </div>
-    <div class="music"></div>
+
+    <!-- <div class="music"></div> -->
     
     <div class="guangyun displaynone"></div>
-    <div class="s-guangyun displaynone"></div>
+    <div class="s-guangyun hide"></div>
     
     <div class="share-w displaynone">
       <div class="wxr"></div>
@@ -79,6 +90,11 @@
   </div>
 
 <!-- 3d end -->
+<audio class="audio1" src="./object/c1.mp3" loop ></audio>
+<audio class="audio2" src="./object/c2.mp3" loop ></audio>
+<audio class="audio3" src="./object/c3.mp3" loop ></audio> 
+<audio class="audio4" src="./object/c4.mp3"  ></audio> 
+<!-- c3 打字， c4 穿梭 -->
 </body>
   <!-- // <script type="text/javascript" src="http://10.235.4.96:8700/threejs/build/three.min.js"></script> -->
   <script type="text/javascript" src="./dist/bundle.js" ></script>

@@ -7,7 +7,7 @@ import ColladaLoader from "./ColladaLoader.js";
 // import AnimationHandler from "./AnimationHandler.js";
 // import KeyFrameAnimation from "./KeyFrameAnimation.js";
 import * as createjs from "createjs-module";
-import "./adjust-screen.js";
+// import "./adjust-screen.js";
 import "./twod-animations.js";
 import "./share.js";
 import Styles from '../css/cover.css';
@@ -23,9 +23,13 @@ let orientControls;
 let animations;
 let mixer;
 let autoRotate = true;
-let qiu163, clickCounts = 0;
+let qiu163,faguang, clickCounts = 0;
 let currentMeshName;
 let clocked = false;
+let faguangI;
+
+let startAnimate = false;
+// let animations,kfAnimationsLength;
 
 var particleSystem;
 let createStars = () => {
@@ -129,7 +133,8 @@ let init = () => {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x06091b, 1);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  var pixel = (window.devicePixelRatio>2)? 1 : window.devicePixelRatio;
+  renderer.setPixelRatio(pixel); 
   container.appendChild(renderer.domElement);
 
 
@@ -141,19 +146,11 @@ let init = () => {
   light.intensity = 0.8;
   light.position.set(0, 40, 0);
   // scene.add(light);
-
   createSkyDAE();
   createStars();
-  createBac();
+  // createBac();
 }
 
-let onWindowResize = () => {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
 
 let render = () => {
   if (autoRotate) group.rotation.y -= 0.0008;
@@ -167,7 +164,10 @@ let render = () => {
 }
 
 let animate = () => {
-  requestAnimationFrame(animate);
+  // setTimeout(function(){
+
+    window.requestAnimationFrame(animate);
+  // }, 10000);
   render();
 }
 
@@ -205,19 +205,22 @@ let createSkyDAE = () => {
   var onError = function(xhr) {};
   let loader = new ColladaLoader();
   loader.options.convertUpAxis = true;
-  loader.load('./object/quyudeng.dae', function(collada) {
+  loader.load('./object/star59.dae', function(collada) {
     loadingTextDom.innerHTML = 100;
+
     setTimeout(function(){
       loadingWrapDom.classList.add("displaynone");
-    }, 1500);
+    }, 800);
     setTimeout(function(){
       coverDom.classList.remove("displaynone");
-    }, 1400);
-
+    }, 700);
 
     console.log(collada);
     model = collada.scene;
     group.add(model);
+
+    // animations = collada.animations;
+    // kfAnimationsLength = animations.length;
 
     // processArray(model.children);
 
@@ -245,9 +248,9 @@ let createSkyDAE = () => {
         controls.maxDistance = 100;
 
         controls.enableDamping = true;
-        controls.dampingFactor = 0.25;
+        controls.dampingFactor = 0.35;
         controls.minPolarAngle = 30 * (Math.PI / 180);
-        controls.maxPolarAngle = 150 * (Math.PI / 180);
+        controls.maxPolarAngle = 120 * (Math.PI / 180);
       } else if (child instanceof THREE.PointLight) {
         // child.decay = 0;
         // child.intensity = 1;
@@ -256,12 +259,16 @@ let createSkyDAE = () => {
         console.log("_163333333999999")
         qiu163 = child.parent;
         qiu163.visible = false;
+      } else if ((child instanceof THREE.Mesh) && (child.parent.name == "faguang")) {
+        console.log("faguang")
+        // debugger
+        faguang = child.parent;
+        faguang.visible = false;
       }
 
     }, onProgress, onError);
 
-    animate();
-    window.addEventListener('resize', onWindowResize, false);
+    // animate();
     
     //no use setTimeout(function(){ 
     //   document.querySelector(".xinhaoshowtip").classList.add("hide");
@@ -403,15 +410,15 @@ let handleRotate = (obj) => {
 const mapping = {
   "tuxing.1": {
     pic: "tuxing",
-    text: "土星有一个显著的行星环，其主要成分是冰的微粒和较少数的岩石残骸以及尘土。（如果人类能在冰的世界里冬眠，那该多好~）"
+    text: "土星大气以氢、氦为主，它有一个显著的行星环，主要的成分是冰的微粒和较少数的岩石残骸以及尘土（天气这么热，如果人类能在冰的世界里冬眠，那该多好~）。"
   },
   "tuxing2": {
     pic: "tuxing",
-    text: "土星有一个显著的行星环，其主要成分是冰的微粒和较少数的岩石残骸以及尘土。（如果人类能在冰的世界里冬眠，那该多好~）"
+    text: "土星有一个显著的行星环，其主要成分是冰的微粒和较少数的岩石残骸以及尘土。（这么热，如果人类能在冰的世界里冬眠，那该多好~）"
   },
   "qiu2.1": {
     pic: "haiwang",
-    text: "表面有荧荧的淡蓝色光，有着太阳系最强烈的风暴，风速高达2100km/h。云顶的温度是-218 ℃（55K），是太阳系最冷的地区之一。（这里没人，就是风大）"
+    text: "表面有荧荧的淡蓝色光，有着太阳系最强烈的风暴，风速高达2100km/h。云顶的温度是-218 ℃（55K），是太阳系最冷的地区之一（这里没人，就是风大）。"
   },
   "daxiongxian.15": {
     pic: "bigbear",
@@ -423,7 +430,7 @@ const mapping = {
   },
   "heijianbian.1": {
     pic: "halei",
-    text: "哈雷彗星是唯一能用裸眼直接从地球看见的短周期彗星，也是人一生中唯一以裸眼可能看见两次的彗星。（下次回归时间2061年7月28日，44年后我们再相见！）"
+    text: "哈雷彗星是唯一能用裸眼直接从地球看见的短周期彗星，也是人一生中唯一以裸眼可能看见两次的彗星（下次回归时间2061年7月28日，44年后我们再相见！）。"
   },
   "nanshizi.1": {
     pic: "shizi",
@@ -431,7 +438,7 @@ const mapping = {
   },
   "huo": {
     pic: "mars",
-    text: "火星最像地球，CO₂为主的大气稀薄又寒冷。它是一颗“沙漠行星”，每年常有尘暴发生。（如果未来人类对外星球殖民，它很可能是我们的首选地点。）"
+    text: "火星最像地球，CO₂为主的大气稀薄又寒冷。它是一颗“沙漠行星”，每年常有尘暴发生（如果未来人类对外星球殖民，它很可能是我们的首选地点）。"
   },
   "shizi.1": {
     pic: "lion",
@@ -439,11 +446,11 @@ const mapping = {
   },
   "kai": {
     pic: "kaipule",
-    text: "2015年发现的迄今为止最想地球的宜居行星，有可能拥有大气层和流动水，被称为地球2.0，“地球的表哥”。（不过，到底有没有人类还不得而知。）"
+    text: "2015年发现的迄今为止最像地球的宜居行星，有可能拥有大气层和流动水，被称为地球2.0，“地球的表哥”（不过，到底有没有人类还不得而知）。"
   },
   "xinxin.1": {
     pic: "mingwang",
-    text: "这是一颗“有爱”的星球，它有一个由氮冰构成的巨大心形区域——汤博区。因其被定义为矮行星，所以从太阳系九大行星中除名。"
+    text: "这是一颗“有爱”的星球，它有一个由氮冰构成的巨大心形区域——汤博区。冥王星是体积最大的海外天体，因被定义为矮行星，所以从太阳系九大行星中除名。"
   },
   "_163": {
     pic: "",
@@ -472,12 +479,14 @@ let tweenCameraToMesh = () => {
   let intersects = raycaster.intersectObjects(hotObjects, true);
 
   if (intersects.length > 0) {
-    document.querySelector(".s-guangyun").classList.add("hide");
+    // document.querySelector(".s-guangyun").classList.add("hide");
+    document.querySelector(".s-tips").classList.add("displaynone");
     clickCounts++;
     autoRotate = false;
 
     var selectedObject = intersects[0].object;
     var focusObj = selectedObject.parent;
+    if(currentMeshName == focusObj.name) return;
     currentMeshName = focusObj.name;
     console.log("selectedObject.parent.name", currentMeshName);
     
@@ -512,12 +521,12 @@ let tweenToMesh = (focusObj)=>{
         stopTime = 1050;
         break;
       case "tuxing2":
-        tweenPos.y += 3;
-        stopTime = 700;
+        tweenPos.y += 4;
+        stopTime = 800;
         break;
       case "tuxing.1":
-        tweenPos.y += 3;
-        stopTime = 700;
+        tweenPos.y += 4;
+        stopTime = 800;
         break;
       case "shizi.1":
         tweenPos.y -= 6;
@@ -545,6 +554,9 @@ let tweenToMesh = (focusObj)=>{
         tweenPos.y += 10;
         stopTime = 900;
         break;
+      case "shinv.2":
+        tweenPos.y -= 4;
+        break;
       default:
         break;
     }
@@ -562,21 +574,14 @@ let tweenToMesh = (focusObj)=>{
       if (focusObj.name == "_163") {
         document.querySelector(".end-wrap").classList.remove("hide");
         document.querySelector(".guo").classList.add("hide");
-        document.querySelector(".guangyun").classList.remove("hide");
+        // document.querySelector(".guangyun").classList.remove("hide");
 
         const wxren = document.querySelector(".waixingren");
         wxren.classList.add("wxr-animation1");
         setTimeout(function(){
           wxren.classList.remove("wxr-animation1");
           wxren.classList.add("wxr-animation2");
-          setTimeout(function(){
-            wxren.classList.remove("wxr-animation2");
-            wxren.classList.add("wxr-animation3");
-            setTimeout(function(){
-              wxren.classList.remove("wxr-animation3");
-              wxren.classList.add("wxr-animation4");
-            }, 0.47*1000)
-          }, 2.2*1000)
+          
         }, 0.59 * 1000)
       } else {
         showInfoPage(focusObj.name);
@@ -613,49 +618,14 @@ let tweenToMesh = (focusObj)=>{
       }, 100);
     }
 }
-let show163Animate = ()=>{
-  qiu163.visible = true;
-  const xinhaotip = document.querySelector(".xinhaoshowtip")
-  xinhaotip.classList.remove("hide");
-  setTimeout(function() {
-    xinhaotip.classList.add("hide")
-  }, 4000);
 
-  var qiutweenPos = qiu163.getWorldPosition();
-  var t2;
-  setTimeout(function() {
-    t2.setPaused(true);
-    controls.enabled = false;
-    autoRotate = false;
-    clocked = false;
-
-    document.querySelector(".s-guangyun").classList.remove("hide");
-  }, 400);
-
-
-  t2 = createjs.Tween.get(camera.position)
-  .to({
-    x: 0,
-    y: 0,
-    z: 0
-  }, 600, createjs.Ease.linear)
-  .to({
-    x: qiutweenPos.x,
-    y: qiutweenPos.y,
-    z: qiutweenPos.z
-  }, 600, createjs.Ease.linear);
-
-  createjs.Tween.get(controls.target)
-    .to({
-      x: qiutweenPos.x ,
-      y: qiutweenPos.y - 1,
-      z: qiutweenPos.z + 0.001
-    }, 600, createjs.Ease.linear);
-
-}
 let tweenToOrigin = () => {
-  document.querySelector(".guangyun").classList.add("hide");
+  // document.querySelector(".guangyun").classList.add("hide");
   document.querySelector(".s-guangyun").classList.add("hide");
+  document.querySelector(".guo").classList.remove("hide");
+
+  // clearInterval(faguangI);
+  // faguang.visible = false;
 
   currentMeshName = "";
 
@@ -690,7 +660,6 @@ let tweenToOrigin = () => {
 
 
   let infoDom = document.querySelector(".info-page");
-
   if (infoDom.style.bottom != "0rem") return;
   createjs.Tween.get({
       bottom: 0
@@ -701,19 +670,99 @@ let tweenToOrigin = () => {
     .to({
       bottom: -7
     }, 500, createjs.Ease.Linear)
-
   function changeInfoPos(event) {
     var data = event.currentTarget.target;
     infoDom.style.bottom = data.bottom + "rem";
   }
 
-  if (clickCounts == 6) {
-    clocked = true;
-    setTimeout(function(){
-      console.log("33222");
-      show163Animate();
-    }, 2000);
+  let guoDom = document.querySelector(".guo");
+  // if (guoDom.style.bottom != "-2rem") return;
+  createjs.Tween.get({
+      bottom: -2
+    }, {
+      loop: false,
+      onChange: changeGuoPos
+    })
+    .to({
+      bottom: 0
+    }, 500, createjs.Ease.Linear)
+  function changeGuoPos(event) {
+    var data = event.currentTarget.target;
+    guoDom.style.bottom = data.bottom + "rem";
   }
+  
+  
+  
+  switch(clickCounts){
+    case 1:
+      showTipFunc("不是这个星球发出的信号！")
+      break;
+    case 4:
+      showTipFunc("也不是这个哦~")
+      break;
+    case 5:
+      clocked = true;
+      if(musicClasslist.contains("on")){
+        audio1.pause();
+        audio2.play();
+      }
+      musicDom.setAttribute("curplay","audio2");
+
+      setTimeout(function(){
+        console.log("33222");
+        show163Animate();
+      }, 1000);
+      // faguangI = setInterval(function(){
+      //   faguang.visible = !faguang.visible;
+      // }, 2000);
+      break;
+  }
+}
+  
+let showTipFunc = (text)=>{
+  const xinhaotip = document.querySelector(".xinhaoshowtip")
+  xinhaotip.innerHTML = text;
+  xinhaotip.classList.remove("hide");
+  setTimeout(function() {
+    xinhaotip.classList.add("hide")
+  }, 4000);
+}
+
+let show163Animate = ()=>{
+  
+  showTipFunc("信号又出现了！！！")
+  qiu163.visible = true;
+  
+
+  var qiutweenPos = qiu163.getWorldPosition();
+  var t2;
+  setTimeout(function() {
+    t2.setPaused(true);
+    controls.enabled = false;
+    autoRotate = false;
+    clocked = false;
+
+    // document.querySelector(".s-guangyun").classList.remove("hide");
+  }, 50);
+
+  t2 = createjs.Tween.get(camera.position)
+  .to({
+    x: 0,
+    y: 0,
+    z: 0
+  }, 600, createjs.Ease.linear)
+  .to({
+    x: qiutweenPos.x,
+    y: qiutweenPos.y ,
+    z: qiutweenPos.z
+  }, 600, createjs.Ease.linear);
+
+  createjs.Tween.get(controls.target)
+    .to({
+      x: qiutweenPos.x ,
+      y: qiutweenPos.y - 1 - 20,
+      z: qiutweenPos.z + 0.001
+    }, 600, createjs.Ease.linear);
 }
 let showInfoPage = (name) => {
 
@@ -728,7 +777,6 @@ let showInfoPage = (name) => {
 
   document.querySelector(".info-page .text").innerHTML = mapping[name].text;
   let infoDom = document.querySelector(".info-page");
-
   createjs.Tween.get({
       bottom: -7
     }, {
@@ -738,10 +786,25 @@ let showInfoPage = (name) => {
     .to({
       bottom: 0
     }, 500, createjs.Ease.Linear)
-
   function changeInfoPos(event) {
     var data = event.currentTarget.target;
     infoDom.style.bottom = data.bottom + "rem";
+  }
+
+  let guoDom = document.querySelector(".guo");
+  // if (guoDom.style.bottom != "0rem") return;
+  createjs.Tween.get({
+      bottom: 0
+    }, {
+      loop: false,
+      onChange: changeGuoPos
+    })
+    .to({
+      bottom: -2
+    }, 500, createjs.Ease.Linear)
+  function changeGuoPos(event) {
+    var data = event.currentTarget.target;
+    guoDom.style.bottom = data.bottom + "rem";
   }
 }
 
@@ -749,6 +812,10 @@ let showInfoPage = (name) => {
 document.querySelector(".continue").addEventListener("click", function() {
   document.querySelector(".end-wrap").classList.add("hide");
   tweenToOrigin();
+  if(musicClasslist.contains("on")){
+    audio2.pause();
+    audio1.play();
+  }
 });
 document.querySelector(".share").addEventListener("click", function(){
   document.querySelector(".share-w").classList.remove("displaynone");
@@ -760,15 +827,130 @@ document.querySelector(".s-guangyun").addEventListener("click", function() {
   tweenToMesh(qiu163)
 });
 
+var audio1 = document.querySelector(".audio1");
+var audio2 = document.querySelector(".audio2");
 
 
 
 
+document.querySelector(".music").addEventListener("click", function(){
+  var audioclass = event.target.classList;
+  var curAudio = event.target.getAttribute("curplay");
+
+  var curDom = document.querySelector("."+ curAudio +"");
+  if(audioclass.contains("on")){
+    audioclass.remove("on")
+    curDom.pause();
+  }else{
+    audioclass.add("on")
+    curDom.play();
+  }
+})
+// document.querySelector(".music").click();
+// document.querySelector(".music").click();
+
+ 
+
+const wxren = document.querySelector(".waixingren");
+document.querySelector(".waixingren").addEventListener("click", function(){
+  // setTimeout(function(){
+    wxren.classList.remove("wxr-animation2");
+    wxren.classList.add("wxr-animation3");
+    setTimeout(function(){
+      wxren.classList.remove("wxr-animation3");
+      wxren.classList.add("wxr-animation4");
+
+      setTimeout(function(){
+        document.querySelector(".end-wrap .tips").classList.remove("hide");
+        setTimeout(function(){
+          document.querySelector(".last-page").classList.remove("displaynone");
+        }, 800);
+      }, 2000);
+
+    }, 0.47*1000)
+  // }, 2.2*1000)
+});
+
+window.addEventListener('resize', onWindowResize, false);
+
+let onWindowResize = () => {
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+var innerWidthTmp = window.innerWidth;
+//横竖屏事件监听方法
+function screenOrientationListener() {
+  try {
+    var iw = window.innerWidth;
+    var orientation;
+    //屏幕方向改变处理
+    if (iw != innerWidthTmp) {
+      if (iw > window.innerHeight) orientation = 90;
+      else orientation = 0;
+      //调用转屏事件
+      onWindowResize();
+      innerWidthTmp = iw;
+    }
+  } catch (e) {
+    console.log(e);
+  };
+  //间隔固定事件检查是否转屏，默认300毫秒
+  setTimeout(screenOrientationListener, 300);
+}
+//启动横竖屏事件监听
+screenOrientationListener();
+
+const audio3 = document.querySelector(".audio3");
+const audio4 = document.querySelector(".audio4");
+const musicDom = document.querySelector(".music");
+const musicClasslist = musicDom.classList;
+const bac = document.querySelector(".cover-bac");
+const chuansuo = document.querySelector(".chuansuo");
+// const daeDom = document.querySelector(".threed-wrap");
+// const coverDom = document.querySelector(".chuansuo");
+
+
+document.querySelector(".start-chuansuo").addEventListener("click", function(e){
+  if(musicClasslist.contains("on")){
+    audio3.pause();
+    audio4.play();
+  }
+  musicDom.setAttribute("curplay","audio4");
+
+  bac.classList.add("move");
+  chuansuo.classList.add("move");
+  // continueAnimate();
+  setTimeout(function(){
+    // 穿梭完了 显示场景
+    if(musicClasslist.contains("on")){
+      audio4.pause();
+      audio1.play();
+    }
+    musicDom.setAttribute("curplay","audio1");
+    
+    daeDom.classList.remove("displaynone");
+    coverDom.classList.add("displaynone");
+    
+
+    animate();
+
+
+    setTimeout(function(){
+      document.querySelector(".find-xinhaoshowtip").classList.add("hide");
+      document.querySelector(".s-tips").classList.remove("displaynone");
+
+    }, 4000);
+
+
+  }, 3380);
+
+});
 
 
 
-
-
-
-
+    // animate();
 

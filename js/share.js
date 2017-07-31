@@ -33,6 +33,20 @@ module.exports = function() {
       shareUrl = location.href;
       
       document.addEventListener('WeixinJSBridgeReady', function() {
+        // wx.ready(function() {
+            document.querySelector(".audio1").play();
+            document.querySelector(".audio1").pause();
+
+            document.querySelector(".audio2").play();
+            document.querySelector(".audio2").pause();
+
+            document.querySelector(".audio3").play();
+            document.querySelector(".audio3").pause();
+            
+            document.querySelector(".audio4").play();
+            document.querySelector(".audio4").pause();
+        // });
+
         window.WeixinJSBridge.on('menu:share:appmessage', function(argv) {
           return window.WeixinJSBridge.invoke('sendAppMessage', {
             "img_url": data.imgurl || imgurl,

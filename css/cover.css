@@ -1,3 +1,4 @@
+
 *{
   margin:0;
   padding: 0;
@@ -34,6 +35,7 @@
 }
 .info-page .tuxing{
   background: url(../images/name/tuxing.png) no-repeat;
+  background-position: 0.22rem 0;
 }
 .info-page .haiwang{
   background: url(../images/name/haiwang.png) no-repeat;
@@ -71,7 +73,7 @@
   text-align: center;
   color: #78787f;
   margin-top:0.9rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
 }
 .fast-wrapper{
   background-color: #000;
@@ -102,13 +104,17 @@ body{
   margin: 0.2rem;
 }
 .music{
-  position: absolute;
+  position: fixed;
   top:0.26rem;
   right: 0.26rem;
   width: 0.54rem;
   height: 0.58rem;
-  background: url(../images/music.png) no-repeat;
+  background-image: url(../images/music-close.png);
   background-size: 100% 100%;
+  z-index: 120;
+}
+.music.on{
+  background-image: url(../images/music.png) !important;
 }
 .cover-bac .xinhao{
   width: 5rem;
@@ -210,90 +216,90 @@ body{
 .xinhao-fashe {
     background-image: url(../images/xinhao31.png);
     position: absolute;
-    top: 0.7rem;
-    left: 1.2rem;
+    bottom: 3rem;
+    right: -1.1rem;
     -webkit-animation: fasheanimation 1.4s steps(1) infinite;
             animation: fasheanimation 1.4s steps(1) infinite;
     width: 6.8rem;
     height: 8rem;
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
-}
-
-@-webkit-keyframes fasheanimation {
-  0% { background-position: 0px 0px; }
-  2.94% { background-position: -680px 0px; }
-  5.88% { background-position: 0px -800px; }
-  8.82% { background-position: -680px -800px; }
-  11.76% { background-position: 0px -1600px; }
-  14.71% { background-position: -680px -1600px; }
-  17.65% { background-position: 0px -2400px; }
-  20.59% { background-position: -680px -2400px; }
-  23.53% { background-position: 0px -3200px; }
-  26.47% { background-position: -680px -3200px; }
-  29.41% { background-position: 0px -4000px; }
-  32.35% { background-position: -680px -4000px; }
-  35.29% { background-position: 0px -4800px; }
-  38.24% { background-position: -680px -4800px; }
-  41.18% { background-position: 0px -5600px; }
-  44.12% { background-position: -680px -5600px; }
-  47.06% { background-position: 0px -6400px; }
-  50.00% { background-position: -680px -6400px; }
-  52.94% { background-position: 0px -7200px; }
-  55.88% { background-position: -680px -7200px; }
-  58.82% { background-position: 0px -8000px; }
-  61.76% { background-position: -680px -8000px; }
-  64.71% { background-position: 0px -8800px; }
-  67.65% { background-position: -680px -8800px; }
-  70.59% { background-position: 0px -9600px; }
-  73.53% { background-position: -680px -9600px; }
-  76.47% { background-position: 0px -10400px; }
-  79.41% { background-position: -680px -10400px; }
-  82.35% { background-position: 0px -11200px; }
-  85.29% { background-position: -680px -11200px; }
-  88.24% { background-position: 0px -12000px; }
-  91.18% { background-position: -680px -12000px; }
-  94.12% { background-position: 0px -12800px; }
-  97.06% { background-position: -680px -12800px; }
-  100.00% { background-position: 0px -13600px; }
+    /*-webkit-transform: scale(0.8);
+            transform: scale(0.8);*/
+    background-size: 13.6rem 152rem;
 }
 
 @keyframes fasheanimation {
-  0% { background-position: 0px 0px; }
-  2.94% { background-position: -680px 0px; }
-  5.88% { background-position: 0px -800px; }
-  8.82% { background-position: -680px -800px; }
-  11.76% { background-position: 0px -1600px; }
-  14.71% { background-position: -680px -1600px; }
-  17.65% { background-position: 0px -2400px; }
-  20.59% { background-position: -680px -2400px; }
-  23.53% { background-position: 0px -3200px; }
-  26.47% { background-position: -680px -3200px; }
-  29.41% { background-position: 0px -4000px; }
-  32.35% { background-position: -680px -4000px; }
-  35.29% { background-position: 0px -4800px; }
-  38.24% { background-position: -680px -4800px; }
-  41.18% { background-position: 0px -5600px; }
-  44.12% { background-position: -680px -5600px; }
-  47.06% { background-position: 0px -6400px; }
-  50.00% { background-position: -680px -6400px; }
-  52.94% { background-position: 0px -7200px; }
-  55.88% { background-position: -680px -7200px; }
-  58.82% { background-position: 0px -8000px; }
-  61.76% { background-position: -680px -8000px; }
-  64.71% { background-position: 0px -8800px; }
-  67.65% { background-position: -680px -8800px; }
-  70.59% { background-position: 0px -9600px; }
-  73.53% { background-position: -680px -9600px; }
-  76.47% { background-position: 0px -10400px; }
-  79.41% { background-position: -680px -10400px; }
-  82.35% { background-position: 0px -11200px; }
-  85.29% { background-position: -680px -11200px; }
-  88.24% { background-position: 0px -12000px; }
-  91.18% { background-position: -680px -12000px; }
-  94.12% { background-position: 0px -12800px; }
-  97.06% { background-position: -680px -12800px; }
-  100.00% { background-position: 0px -13600px; }
+  0% { background-position: 0rem 0rem; }
+  2.94% { background-position: -6.8rem 0rem; }
+  5.88% { background-position: 0rem -8rem; }
+  8.82% { background-position: -6.8rem -8rem; }
+  11.76% { background-position: 0rem -16rem; }
+  14.71% { background-position: -6.8rem -16rem; }
+  17.65% { background-position: 0rem -24rem; }
+  20.59% { background-position: -6.8rem -24rem; }
+  23.53% { background-position: 0rem -32rem; }
+  26.47% { background-position: -6.8rem -32rem; }
+  29.41% { background-position: 0rem -40rem; }
+  32.35% { background-position: -6.8rem -40rem; }
+  35.29% { background-position: 0rem -48rem; }
+  38.24% { background-position: -6.8rem -48rem; }
+  41.18% { background-position: 0rem -56rem; }
+  44.12% { background-position: -6.8rem -56rem; }
+  47.06% { background-position: 0rem -64rem; }
+  50.00% { background-position: -6.8rem -64rem; }
+  52.94% { background-position: 0rem -72rem; }
+  55.88% { background-position: -6.8rem -72rem; }
+  58.82% { background-position: 0rem -80rem; }
+  61.76% { background-position: -6.8rem -80rem; }
+  64.71% { background-position: 0rem -88rem; }
+  67.65% { background-position: -6.8rem -88rem; }
+  70.59% { background-position: 0rem -96rem; }
+  73.53% { background-position: -6.8rem -96rem; }
+  76.47% { background-position: 0rem -104rem; }
+  79.41% { background-position: -6.8rem -104rem; }
+  82.35% { background-position: 0rem -112rem; }
+  85.29% { background-position: -6.8rem -112rem; }
+  88.24% { background-position: 0rem -120rem; }
+  91.18% { background-position: -6.8rem -120rem; }
+  94.12% { background-position: 0rem -128rem; }
+  97.06% { background-position: -6.8rem -128rem; }
+  100.00% { background-position: 0rem -136rem; }
+}
+@-webkit-keyframes fasheanimation {
+  0% { background-position: 0rem 0rem; }
+  2.94% { background-position: -6.8rem 0rem; }
+  5.88% { background-position: 0rem -8rem; }
+  8.82% { background-position: -6.8rem -8rem; }
+  11.76% { background-position: 0rem -16rem; }
+  14.71% { background-position: -6.8rem -16rem; }
+  17.65% { background-position: 0rem -24rem; }
+  20.59% { background-position: -6.8rem -24rem; }
+  23.53% { background-position: 0rem -32rem; }
+  26.47% { background-position: -6.8rem -32rem; }
+  29.41% { background-position: 0rem -40rem; }
+  32.35% { background-position: -6.8rem -40rem; }
+  35.29% { background-position: 0rem -48rem; }
+  38.24% { background-position: -6.8rem -48rem; }
+  41.18% { background-position: 0rem -56rem; }
+  44.12% { background-position: -6.8rem -56rem; }
+  47.06% { background-position: 0rem -64rem; }
+  50.00% { background-position: -6.8rem -64rem; }
+  52.94% { background-position: 0rem -72rem; }
+  55.88% { background-position: -6.8rem -72rem; }
+  58.82% { background-position: 0rem -80rem; }
+  61.76% { background-position: -6.8rem -80rem; }
+  64.71% { background-position: 0rem -88rem; }
+  67.65% { background-position: -6.8rem -88rem; }
+  70.59% { background-position: 0rem -96rem; }
+  73.53% { background-position: -6.8rem -96rem; }
+  76.47% { background-position: 0rem -104rem; }
+  79.41% { background-position: -6.8rem -104rem; }
+  82.35% { background-position: 0rem -112rem; }
+  85.29% { background-position: -6.8rem -112rem; }
+  88.24% { background-position: 0rem -120rem; }
+  91.18% { background-position: -6.8rem -120rem; }
+  94.12% { background-position: 0rem -128rem; }
+  97.06% { background-position: -6.8rem -128rem; }
+  100.00% { background-position: 0rem -136rem; }
 }
 .info-wrap{
   margin-top: 1.96rem;
@@ -329,7 +335,7 @@ body{
   text-align: justify;
 }
 .part3{
-  opacity: 0;
+  /*opacity: 0;*/
 }
 /*//////////index.html///////////*/
 .guo{
@@ -338,18 +344,109 @@ body{
   background: url(../images/guo.png);
   background-size: contain;
   position: absolute;
-  bottom: 0;
+  bottom: 0rem;
   left: 50%;
   z-index: 113;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
+.bowen {
+  background-image: url('../images/bo.png');
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  /*top: 50%;
+  left: 50%;*/
+  /*transform: translate(-50%, -50%) scale(1,1);*/
+  -webkit-animation: bowenanimation 2.00s steps(1) infinite;
+          animation: bowenanimation 2.00s steps(1) infinite;
+  background-size: 18rem 18rem;
+  top: -0.3rem;
+  left: 4rem;
+}
+@-webkit-keyframes bowenanimation {
+  0% { background-position: 0rem 0rem; }
+  3.03% { background-position: -3rem 0rem; }
+  6.06% { background-position: -6rem 0rem; }
+  9.09% { background-position: -9rem 0rem; }
+  12.12% { background-position: -12rem 0rem; }
+  15.15% { background-position: -15rem 0rem; }
+  18.18% { background-position: 0rem -3rem; }
+  21.21% { background-position: -3rem -3rem; }
+  24.24% { background-position: -6rem -3rem; }
+  27.27% { background-position: -9rem -3rem; }
+  30.30% { background-position: -12rem -3rem; }
+  33.33% { background-position: -15rem -3rem; }
+  36.36% { background-position: 0rem -6rem; }
+  39.39% { background-position: -3rem -6rem; }
+  42.42% { background-position: -6rem -6rem; }
+  45.45% { background-position: -9rem -6rem; }
+  48.48% { background-position: -12rem -6rem; }
+  51.52% { background-position: -15rem -6rem; }
+  54.55% { background-position: 0rem -9rem; }
+  57.58% { background-position: -3rem -9rem; }
+  60.61% { background-position: -6rem -9rem; }
+  63.64% { background-position: -9rem -9rem; }
+  66.67% { background-position: -12rem -9rem; }
+  69.70% { background-position: -15rem -9rem; }
+  72.73% { background-position: 0rem -12rem; }
+  75.76% { background-position: -3rem -12rem; }
+  78.79% { background-position: -6rem -12rem; }
+  81.82% { background-position: -9rem -12rem; }
+  84.85% { background-position: -12rem -12rem; }
+  87.88% { background-position: -15rem -12rem; }
+  90.91% { background-position: 0rem -15rem; }
+  93.94% { background-position: -3rem -15rem; }
+  96.97% { background-position: -6rem -15rem; }
+  100.00% { background-position: -9rem -15rem; }
+}
+@keyframes bowenanimation {
+  0% { background-position: 0rem 0rem; }
+  3.03% { background-position: -3rem 0rem; }
+  6.06% { background-position: -6rem 0rem; }
+  9.09% { background-position: -9rem 0rem; }
+  12.12% { background-position: -12rem 0rem; }
+  15.15% { background-position: -15rem 0rem; }
+  18.18% { background-position: 0rem -3rem; }
+  21.21% { background-position: -3rem -3rem; }
+  24.24% { background-position: -6rem -3rem; }
+  27.27% { background-position: -9rem -3rem; }
+  30.30% { background-position: -12rem -3rem; }
+  33.33% { background-position: -15rem -3rem; }
+  36.36% { background-position: 0rem -6rem; }
+  39.39% { background-position: -3rem -6rem; }
+  42.42% { background-position: -6rem -6rem; }
+  45.45% { background-position: -9rem -6rem; }
+  48.48% { background-position: -12rem -6rem; }
+  51.52% { background-position: -15rem -6rem; }
+  54.55% { background-position: 0rem -9rem; }
+  57.58% { background-position: -3rem -9rem; }
+  60.61% { background-position: -6rem -9rem; }
+  63.64% { background-position: -9rem -9rem; }
+  66.67% { background-position: -12rem -9rem; }
+  69.70% { background-position: -15rem -9rem; }
+  72.73% { background-position: 0rem -12rem; }
+  75.76% { background-position: -3rem -12rem; }
+  78.79% { background-position: -6rem -12rem; }
+  81.82% { background-position: -9rem -12rem; }
+  84.85% { background-position: -12rem -12rem; }
+  87.88% { background-position: -15rem -12rem; }
+  90.91% { background-position: 0rem -15rem; }
+  93.94% { background-position: -3rem -15rem; }
+  96.97% { background-position: -6rem -15rem; }
+  100.00% { background-position: -9rem -15rem; }
+}
+
 .xinhaoshowtip{
   position: fixed;
   width: 4.56rem;
-  height: 1.44rem;
-  background: url(../images/xinhaoshowtip.png) 0 0.54rem no-repeat;
+  height: 1.32rem;
+  line-height: 1.32rem;
+  font-size: 0.28rem;
+  color: #fff;
+  text-align: center;
+  background: url(../images/click-tips.png) 0 0.54rem no-repeat;
   background-size: contain;
   margin: 0 auto;
   margin-left: 50%;
@@ -359,7 +456,21 @@ body{
   -webkit-animation: showanimate 0.5s forwards;
           animation: showanimate 0.5s forwards;
 }
-
+.find-xinhaoshowtip{
+  position: fixed;
+  width: 4.56rem;
+  height: 1.44rem;
+  color: #fff;
+  background: url(../images/find-xinhao.png) 0 0.54rem no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding-top: 0.54rem;
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
+}
 .guotip{
   width: 2.48rem;
   height: 1.04rem;
@@ -446,36 +557,123 @@ body{
 }
 .chuansuo{
   position: absolute;
-  bottom: 90%;
-  width: 100%;
-  height: 100%;
-  background-size: 100% 100%;
-  background-color: #000;
+  bottom: 100%;
+  
   z-index: 111;
-}
 
+  background-image: url('http://img1.cache.netease.com/utf8/3g/fast/zc4.png');
+  background-size: 15rem 168.84rem;
+  background-color: #06091b;
+  
+  width: 7.5rem;
+  height: 12.06rem;
+  /*position: absolute;
+  top: 50%;
+  left: 50%;*/
+  /*transform: translate(-50%, -50%) scale(1,1);*/
+  
+
+
+}
 .chuansuo.move{
+  -webkit-animation-name:csmoveanimate, chuansuogif;
+          animation-name:csmoveanimate, chuansuogif;
+  -webkit-animation-duration:0.3s, 3.08s;
+          animation-duration:0.3s, 3.08s;
+  -webkit-animation-timing-function:linear, steps(1);
+          animation-timing-function:linear, steps(1);
+  -webkit-animation-delay:0s, 0.3s;
+          animation-delay:0s, 0.3s;
+  -webkit-animation-iteration-count:1, 1;
+          animation-iteration-count:1, 1;
+  -webkit-animation-fill-mode:forwards, forwards;
+          animation-fill-mode:forwards, forwards;
+  -webkit-animation-direction:normal, alternate;
+          animation-direction:normal, alternate;
+  /*animation: chuansuogif 1.08s steps(1) forwards;*/
+}
+@-webkit-keyframes chuansuogif {
+  0% { background-position: 0rem 0rem; }
+  3.85% { background-position: -7.5rem 0rem; }
+  7.69% { background-position: 0rem -12.06rem; }
+  11.54% { background-position: -7.5rem -12.06rem; }
+  15.38% { background-position: 0rem -24.12rem; }
+  19.23% { background-position: -7.5rem -24.12rem; }
+  23.08% { background-position: 0rem -36.18rem; }
+  26.92% { background-position: -7.5rem -36.18rem; }
+  30.77% { background-position: 0rem -48.24rem; }
+  34.62% { background-position: -7.5rem -48.24rem; }
+  38.46% { background-position: 0rem -60.30rem; }
+  42.31% { background-position: -7.5rem -60.30rem; }
+  46.15% { background-position: 0rem -72.36rem; }
+  50.00% { background-position: -7.5rem -72.36rem; }
+  53.85% { background-position: 0rem -84.42rem; }
+  57.69% { background-position: -7.5rem -84.42rem; }
+  61.54% { background-position: 0rem -96.48rem; }
+  65.38% { background-position: -7.5rem -96.48rem; }
+  69.23% { background-position: 0rem -108.54rem; }
+  73.08% { background-position: -7.5rem -108.54rem; }
+  76.92% { background-position: 0rem -120.60rem; }
+  80.77% { background-position: -7.5rem -120.60rem; }
+  84.62% { background-position: 0rem -132.66rem; }
+  88.46% { background-position: -7.5rem -132.66rem; }
+  92.31% { background-position: 0rem -144.72rem; }
+  96.15% { background-position: -7.5rem -144.72rem; }
+  100.00% { background-position: 0rem -156.78rem; }
+}
+@keyframes chuansuogif {
+  0% { background-position: 0rem 0rem; }
+  3.85% { background-position: -7.5rem 0rem; }
+  7.69% { background-position: 0rem -12.06rem; }
+  11.54% { background-position: -7.5rem -12.06rem; }
+  15.38% { background-position: 0rem -24.12rem; }
+  19.23% { background-position: -7.5rem -24.12rem; }
+  23.08% { background-position: 0rem -36.18rem; }
+  26.92% { background-position: -7.5rem -36.18rem; }
+  30.77% { background-position: 0rem -48.24rem; }
+  34.62% { background-position: -7.5rem -48.24rem; }
+  38.46% { background-position: 0rem -60.30rem; }
+  42.31% { background-position: -7.5rem -60.30rem; }
+  46.15% { background-position: 0rem -72.36rem; }
+  50.00% { background-position: -7.5rem -72.36rem; }
+  53.85% { background-position: 0rem -84.42rem; }
+  57.69% { background-position: -7.5rem -84.42rem; }
+  61.54% { background-position: 0rem -96.48rem; }
+  65.38% { background-position: -7.5rem -96.48rem; }
+  69.23% { background-position: 0rem -108.54rem; }
+  73.08% { background-position: -7.5rem -108.54rem; }
+  76.92% { background-position: 0rem -120.60rem; }
+  80.77% { background-position: -7.5rem -120.60rem; }
+  84.62% { background-position: 0rem -132.66rem; }
+  88.46% { background-position: -7.5rem -132.66rem; }
+  92.31% { background-position: 0rem -144.72rem; }
+  96.15% { background-position: -7.5rem -144.72rem; }
+  100.00% { background-position: 0rem -156.78rem; }
+}
+/*.chuansuo.move{
   -webkit-animation: csmoveanimate 0.3s forwards;
           animation: csmoveanimate 0.3s forwards;
-}
+}*/
+
 @-webkit-keyframes csmoveanimate{
   from{
     bottom: 100%;
-    background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo.gif);
+    /*background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo1.gif);*/
   }
   to{
-    bottom: 0;
-    background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo.gif);
+    bottom: 0 ;
+    /*background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo1.gif);*/
   }
 }
+
 @keyframes csmoveanimate{
   from{
     bottom: 100%;
-    background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo.gif);
+    /*background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo1.gif);*/
   }
   to{
-    bottom: 0;
-    background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo.gif);
+    bottom: 0 ;
+    /*background-image: url(http://img1.cache.netease.com/utf8/3g/fast/chuansuo1.gif);*/
   }
 }
 .cover-bac.move{
@@ -509,6 +707,8 @@ body{
   width: 100%;
   height: 100%;
   z-index: 200;
+  background: url(../images/loding-bac.jpg) no-repeat;
+  background-size: 100% 100%;
 }
 .loading-guo{
   width: 2.66rem;
@@ -628,198 +828,203 @@ body{
   }
 }
 .waixingren {
-  width: 300px;
-  height: 400px;
+  width: 3rem;
+  height: 4rem;
   position: absolute;
-  bottom: 5.5rem;
+  bottom: 6.2rem;
   left: 48%;
-  -webkit-transform: translateX(-50%) scale(0.75);
-          transform: translateX(-50%) scale(0.75);
+  -webkit-transform: translateX(-50%) scale(1);
+          transform: translateX(-50%) scale(1);
 }
 .wxr-animation1{
+  background-size: 18rem 8rem;
   background-image: url('../images/w1.png.png');
   -webkit-animation: animation1 0.59s steps(1) forwards;
           animation: animation1 0.59s steps(1) forwards;
 }
 .wxr-animation2{
+  background-size: 18rem 16rem;
   background-image: url('../images/w2.png.png');
   -webkit-animation: animation2 1.29s steps(1) infinite;
           animation: animation2 1.29s steps(1) infinite;
 }
 .wxr-animation3{
+  background-size: 18rem 8rem;
   background-image: url('../images/w3.png.png');
   -webkit-animation: animation3 0.47s steps(1) forwards;
           animation: animation3 0.47s steps(1) forwards;
 }
 .wxr-animation4{
+  background-size: 18rem 16rem;
   background-image: url('../images/w4.png.png');
   -webkit-animation: animation4 1.41s steps(1) infinite;
           animation: animation4 1.41s steps(1) infinite;
 }
 
+
 @-webkit-keyframes animation1 {
-  0% { background-position: 0px 0px; }
-  10.00% { background-position: -300px 0px; }
-  20.00% { background-position: -600px 0px; }
-  30.00% { background-position: -900px 0px; }
-  40.00% { background-position: -1200px 0px; }
-  50.00% { background-position: -1500px 0px; }
-  60.00% { background-position: 0px -400px; }
-  70.00% { background-position: -300px -400px; }
-  80.00% { background-position: -600px -400px; }
-  90.00% { background-position: -900px -400px; }
-  100.00% { background-position: -1200px -400px; }
+  0% { background-position: 0rem 0rem; }
+  10.00% { background-position: -3rem 0rem; }
+  20.00% { background-position: -6rem 0rem; }
+  30.00% { background-position: -9rem 0rem; }
+  40.00% { background-position: -12rem 0rem; }
+  50.00% { background-position: -15rem 0rem; }
+  60.00% { background-position: 0rem -4rem; }
+  70.00% { background-position: -3rem -4rem; }
+  80.00% { background-position: -6rem -4rem; }
+  90.00% { background-position: -9rem -4rem; }
+  100.00% { background-position: -12rem -4rem; }
 }
 
+
 @keyframes animation1 {
-  0% { background-position: 0px 0px; }
-  10.00% { background-position: -300px 0px; }
-  20.00% { background-position: -600px 0px; }
-  30.00% { background-position: -900px 0px; }
-  40.00% { background-position: -1200px 0px; }
-  50.00% { background-position: -1500px 0px; }
-  60.00% { background-position: 0px -400px; }
-  70.00% { background-position: -300px -400px; }
-  80.00% { background-position: -600px -400px; }
-  90.00% { background-position: -900px -400px; }
-  100.00% { background-position: -1200px -400px; }
+  0% { background-position: 0rem 0rem; }
+  10.00% { background-position: -3rem 0rem; }
+  20.00% { background-position: -6rem 0rem; }
+  30.00% { background-position: -9rem 0rem; }
+  40.00% { background-position: -12rem 0rem; }
+  50.00% { background-position: -15rem 0rem; }
+  60.00% { background-position: 0rem -4rem; }
+  70.00% { background-position: -3rem -4rem; }
+  80.00% { background-position: -6rem -4rem; }
+  90.00% { background-position: -9rem -4rem; }
+  100.00% { background-position: -12rem -4rem; }
 }
 
 @-webkit-keyframes animation2 {
-  0% { background-position: 0px 0px; }
-  4.76% { background-position: -300px 0px; }
-  9.52% { background-position: -600px 0px; }
-  14.29% { background-position: -900px 0px; }
-  19.05% { background-position: -1200px 0px; }
-  23.81% { background-position: -1500px 0px; }
-  28.57% { background-position: 0px -400px; }
-  33.33% { background-position: -300px -400px; }
-  38.10% { background-position: -600px -400px; }
-  42.86% { background-position: -900px -400px; }
-  47.62% { background-position: -1200px -400px; }
-  52.38% { background-position: -1500px -400px; }
-  57.14% { background-position: 0px -800px; }
-  61.90% { background-position: -300px -800px; }
-  66.67% { background-position: -600px -800px; }
-  71.43% { background-position: -900px -800px; }
-  76.19% { background-position: -1200px -800px; }
-  80.95% { background-position: -1500px -800px; }
-  85.71% { background-position: 0px -1200px; }
-  90.48% { background-position: -300px -1200px; }
-  95.24% { background-position: -600px -1200px; }
-  100.00% { background-position: -900px -1200px; }
+  0% { background-position: 0rem 0rem; }
+  4.76% { background-position: -3rem 0rem; }
+  9.52% { background-position: -6rem 0rem; }
+  14.29% { background-position: -9rem 0rem; }
+  19.05% { background-position: -12rem 0rem; }
+  23.81% { background-position: -15rem 0rem; }
+  28.57% { background-position: 0rem -4rem; }
+  33.33% { background-position: -3rem -4rem; }
+  38.10% { background-position: -6rem -4rem; }
+  42.86% { background-position: -9rem -4rem; }
+  47.62% { background-position: -12rem -4rem; }
+  52.38% { background-position: -15rem -4rem; }
+  57.14% { background-position: 0rem -8rem; }
+  61.90% { background-position: -3rem -8rem; }
+  66.67% { background-position: -6rem -8rem; }
+  71.43% { background-position: -9rem -8rem; }
+  76.19% { background-position: -12rem -8rem; }
+  80.95% { background-position: -15rem -8rem; }
+  85.71% { background-position: 0rem -12rem; }
+  90.48% { background-position: -3rem -12rem; }
+  95.24% { background-position: -6rem -12rem; }
+  100.00% { background-position: -9rem -12rem; }
 }
 
 @keyframes animation2 {
-  0% { background-position: 0px 0px; }
-  4.76% { background-position: -300px 0px; }
-  9.52% { background-position: -600px 0px; }
-  14.29% { background-position: -900px 0px; }
-  19.05% { background-position: -1200px 0px; }
-  23.81% { background-position: -1500px 0px; }
-  28.57% { background-position: 0px -400px; }
-  33.33% { background-position: -300px -400px; }
-  38.10% { background-position: -600px -400px; }
-  42.86% { background-position: -900px -400px; }
-  47.62% { background-position: -1200px -400px; }
-  52.38% { background-position: -1500px -400px; }
-  57.14% { background-position: 0px -800px; }
-  61.90% { background-position: -300px -800px; }
-  66.67% { background-position: -600px -800px; }
-  71.43% { background-position: -900px -800px; }
-  76.19% { background-position: -1200px -800px; }
-  80.95% { background-position: -1500px -800px; }
-  85.71% { background-position: 0px -1200px; }
-  90.48% { background-position: -300px -1200px; }
-  95.24% { background-position: -600px -1200px; }
-  100.00% { background-position: -900px -1200px; }
+  0% { background-position: 0rem 0rem; }
+  4.76% { background-position: -3rem 0rem; }
+  9.52% { background-position: -6rem 0rem; }
+  14.29% { background-position: -9rem 0rem; }
+  19.05% { background-position: -12rem 0rem; }
+  23.81% { background-position: -15rem 0rem; }
+  28.57% { background-position: 0rem -4rem; }
+  33.33% { background-position: -3rem -4rem; }
+  38.10% { background-position: -6rem -4rem; }
+  42.86% { background-position: -9rem -4rem; }
+  47.62% { background-position: -12rem -4rem; }
+  52.38% { background-position: -15rem -4rem; }
+  57.14% { background-position: 0rem -8rem; }
+  61.90% { background-position: -3rem -8rem; }
+  66.67% { background-position: -6rem -8rem; }
+  71.43% { background-position: -9rem -8rem; }
+  76.19% { background-position: -12rem -8rem; }
+  80.95% { background-position: -15rem -8rem; }
+  85.71% { background-position: 0rem -12rem; }
+  90.48% { background-position: -3rem -12rem; }
+  95.24% { background-position: -6rem -12rem; }
+  100.00% { background-position: -9rem -12rem; }
 }
 
 @-webkit-keyframes animation3 {
-  0% { background-position: 0px 0px; }
-  14.29% { background-position: -300px 0px; }
-  28.57% { background-position: -600px 0px; }
-  42.86% { background-position: -900px 0px; }
-  57.14% { background-position: -1200px 0px; }
-  71.43% { background-position: -1500px 0px; }
-  85.71% { background-position: 0px -400px; }
-  100.00% { background-position: -300px -400px; }
+  0% { background-position: 0rem 0rem; }
+  14.29% { background-position: -3rem 0rem; }
+  28.57% { background-position: -6rem 0rem; }
+  42.86% { background-position: -9rem 0rem; }
+  57.14% { background-position: -12rem 0rem; }
+  71.43% { background-position: -15rem 0rem; }
+  85.71% { background-position: 0rem -4rem; }
+  100.00% { background-position: -3rem -4rem; }
 }
 
 @keyframes animation3 {
-  0% { background-position: 0px 0px; }
-  14.29% { background-position: -300px 0px; }
-  28.57% { background-position: -600px 0px; }
-  42.86% { background-position: -900px 0px; }
-  57.14% { background-position: -1200px 0px; }
-  71.43% { background-position: -1500px 0px; }
-  85.71% { background-position: 0px -400px; }
-  100.00% { background-position: -300px -400px; }
+  0% { background-position: 0rem 0rem; }
+  14.29% { background-position: -3rem 0rem; }
+  28.57% { background-position: -6rem 0rem; }
+  42.86% { background-position: -9rem 0rem; }
+  57.14% { background-position: -12rem 0rem; }
+  71.43% { background-position: -15rem 0rem; }
+  85.71% { background-position: 0rem -4rem; }
+  100.00% { background-position: -3rem -4rem; }
 }
 
 @-webkit-keyframes animation4 {
-  0% { background-position: 0px 0px; }
-  4.35% { background-position: -300px 0px; }
-  8.70% { background-position: -600px 0px; }
-  13.04% { background-position: -900px 0px; }
-  17.39% { background-position: -1200px 0px; }
-  21.74% { background-position: -1500px 0px; }
-  26.09% { background-position: 0px -400px; }
-  30.43% { background-position: -300px -400px; }
-  34.78% { background-position: -600px -400px; }
-  39.13% { background-position: -900px -400px; }
-  43.48% { background-position: -1200px -400px; }
-  47.83% { background-position: -1500px -400px; }
-  52.17% { background-position: 0px -800px; }
-  56.52% { background-position: -300px -800px; }
-  60.87% { background-position: -600px -800px; }
-  65.22% { background-position: -900px -800px; }
-  69.57% { background-position: -1200px -800px; }
-  73.91% { background-position: -1500px -800px; }
-  78.26% { background-position: 0px -1200px; }
-  82.61% { background-position: -300px -1200px; }
-  86.96% { background-position: -600px -1200px; }
-  91.30% { background-position: -900px -1200px; }
-  95.65% { background-position: -1200px -1200px; }
-  100.00% { background-position: -1500px -1200px; }
+  0% { background-position: 0rem 0rem; }
+  4.35% { background-position: -3rem 0rem; }
+  8.70% { background-position: -6rem 0rem; }
+  13.04% { background-position: -9rem 0rem; }
+  17.39% { background-position: -12rem 0rem; }
+  21.74% { background-position: -15rem 0rem; }
+  26.09% { background-position: 0rem -4rem; }
+  30.43% { background-position: -3rem -4rem; }
+  34.78% { background-position: -6rem -4rem; }
+  39.13% { background-position: -9rem -4rem; }
+  43.48% { background-position: -12rem -4rem; }
+  47.83% { background-position: -15rem -4rem; }
+  52.17% { background-position: 0rem -8rem; }
+  56.52% { background-position: -3rem -8rem; }
+  60.87% { background-position: -6rem -8rem; }
+  65.22% { background-position: -9rem -8rem; }
+  69.57% { background-position: -12rem -8rem; }
+  73.91% { background-position: -15rem -8rem; }
+  78.26% { background-position: 0rem -12rem; }
+  82.61% { background-position: -3rem -12rem; }
+  86.96% { background-position: -6rem -12rem; }
+  91.30% { background-position: -9rem -12rem; }
+  95.65% { background-position: -12rem -12rem; }
+  100.00% { background-position: -15rem -12rem; }
 }
 
 @keyframes animation4 {
-  0% { background-position: 0px 0px; }
-  4.35% { background-position: -300px 0px; }
-  8.70% { background-position: -600px 0px; }
-  13.04% { background-position: -900px 0px; }
-  17.39% { background-position: -1200px 0px; }
-  21.74% { background-position: -1500px 0px; }
-  26.09% { background-position: 0px -400px; }
-  30.43% { background-position: -300px -400px; }
-  34.78% { background-position: -600px -400px; }
-  39.13% { background-position: -900px -400px; }
-  43.48% { background-position: -1200px -400px; }
-  47.83% { background-position: -1500px -400px; }
-  52.17% { background-position: 0px -800px; }
-  56.52% { background-position: -300px -800px; }
-  60.87% { background-position: -600px -800px; }
-  65.22% { background-position: -900px -800px; }
-  69.57% { background-position: -1200px -800px; }
-  73.91% { background-position: -1500px -800px; }
-  78.26% { background-position: 0px -1200px; }
-  82.61% { background-position: -300px -1200px; }
-  86.96% { background-position: -600px -1200px; }
-  91.30% { background-position: -900px -1200px; }
-  95.65% { background-position: -1200px -1200px; }
-  100.00% { background-position: -1500px -1200px; }
+  0% { background-position: 0rem 0rem; }
+  4.35% { background-position: -3rem 0rem; }
+  8.70% { background-position: -6rem 0rem; }
+  13.04% { background-position: -9rem 0rem; }
+  17.39% { background-position: -12rem 0rem; }
+  21.74% { background-position: -15rem 0rem; }
+  26.09% { background-position: 0rem -4rem; }
+  30.43% { background-position: -3rem -4rem; }
+  34.78% { background-position: -6rem -4rem; }
+  39.13% { background-position: -9rem -4rem; }
+  43.48% { background-position: -12rem -4rem; }
+  47.83% { background-position: -15rem -4rem; }
+  52.17% { background-position: 0rem -8rem; }
+  56.52% { background-position: -3rem -8rem; }
+  60.87% { background-position: -6rem -8rem; }
+  65.22% { background-position: -9rem -8rem; }
+  69.57% { background-position: -12rem -8rem; }
+  73.91% { background-position: -15rem -8rem; }
+  78.26% { background-position: 0rem -12rem; }
+  82.61% { background-position: -3rem -12rem; }
+  86.96% { background-position: -6rem -12rem; }
+  91.30% { background-position: -9rem -12rem; }
+  95.65% { background-position: -12rem -12rem; }
+  100.00% { background-position: -15rem -12rem; }
 }
 
-
 .s-guangyun{
-    width: 2rem;
-    height: 2rem;
+    width: 1rem;
+    height: 1rem;
     background: url(../images/guangyun.png) no-repeat;
-    background-size: contain;
+    background-size: 100%;
     position: absolute;
-    bottom: 42.8%;
-    left: 51.5%;
+    top: 2.65rem;
+    left: 4.29rem;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
     -webkit-animation: ssguangyunanimate 2s infinite;
@@ -855,6 +1060,7 @@ body{
   height: 100%;
   background-color: #000;
   opacity: 0.8;
+  z-index: 121;
 }
 
 .share-w .wxr{
@@ -867,10 +1073,37 @@ body{
   background-size: contain;
 }
 
+.end-wrap .tips{
+  position: absolute;
+  width: 100%;
+  height: 2.48rem;
+  bottom: 3rem;
+  background: url(../images/info-bac2.png) no-repeat;
+  background-size: 100% 65%;
+  /*opacity: 1;*/
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
 
+  font-size: 0.28rem;
+  line-height: 0.48rem;
+  color: #ffffff;
+  padding: 0.8rem 1rem;
+  width: 5.24rem;
+  opacity: 0;
+  text-align: justify;
+}
+.info-wrap span.info3{
+  text-align: center !important;
+}
 
-
-
+.s-tips{
+  position: absolute;
+  bottom: 0.6rem;
+  color: #78787f;
+  font-size: 0.24rem;
+  text-align: center;
+  width: 100%;
+}
 
 
 

@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: './dist/bundle.js'
   },
-  // devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   // debug: true,
   module: {
     rules: [
@@ -57,3 +57,5 @@ module.exports = {
     new UglifyJsPlugin()
   ]
 }
+
+
