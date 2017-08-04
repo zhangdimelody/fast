@@ -6,6 +6,10 @@
   touch-callout: none;
   font-family: "微软雅黑";
 }
+::-webkit-scrollbar{
+    display: none
+}
+
 .info-page{
   /*display: none;*/
   position: absolute;
@@ -561,25 +565,23 @@ body{
   
   z-index: 111;
 
-  background-image: url('http://img1.cache.netease.com/utf8/3g/fast/zc4.png');
-  background-size: 15rem 168.84rem;
+  background-image: url('../images/chuansuo4.png');
+  background-size: 15rem 160.08rem;
   background-color: #06091b;
   
-  width: 7.5rem;
-  height: 12.06rem;
+  width: 7.50rem;
+  height: 13.34rem;
   /*position: absolute;
   top: 50%;
   left: 50%;*/
   /*transform: translate(-50%, -50%) scale(1,1);*/
-  
-
 
 }
 .chuansuo.move{
   -webkit-animation-name:csmoveanimate, chuansuogif;
           animation-name:csmoveanimate, chuansuogif;
-  -webkit-animation-duration:0.3s, 3.08s;
-          animation-duration:0.3s, 3.08s;
+  -webkit-animation-duration:0.3s, 2.35s;
+          animation-duration:0.3s, 2.35s;
   -webkit-animation-timing-function:linear, steps(1);
           animation-timing-function:linear, steps(1);
   -webkit-animation-delay:0s, 0.3s;
@@ -592,63 +594,31 @@ body{
           animation-direction:normal, alternate;
   /*animation: chuansuogif 1.08s steps(1) forwards;*/
 }
-@-webkit-keyframes chuansuogif {
-  0% { background-position: 0rem 0rem; }
-  3.85% { background-position: -7.5rem 0rem; }
-  7.69% { background-position: 0rem -12.06rem; }
-  11.54% { background-position: -7.5rem -12.06rem; }
-  15.38% { background-position: 0rem -24.12rem; }
-  19.23% { background-position: -7.5rem -24.12rem; }
-  23.08% { background-position: 0rem -36.18rem; }
-  26.92% { background-position: -7.5rem -36.18rem; }
-  30.77% { background-position: 0rem -48.24rem; }
-  34.62% { background-position: -7.5rem -48.24rem; }
-  38.46% { background-position: 0rem -60.30rem; }
-  42.31% { background-position: -7.5rem -60.30rem; }
-  46.15% { background-position: 0rem -72.36rem; }
-  50.00% { background-position: -7.5rem -72.36rem; }
-  53.85% { background-position: 0rem -84.42rem; }
-  57.69% { background-position: -7.5rem -84.42rem; }
-  61.54% { background-position: 0rem -96.48rem; }
-  65.38% { background-position: -7.5rem -96.48rem; }
-  69.23% { background-position: 0rem -108.54rem; }
-  73.08% { background-position: -7.5rem -108.54rem; }
-  76.92% { background-position: 0rem -120.60rem; }
-  80.77% { background-position: -7.5rem -120.60rem; }
-  84.62% { background-position: 0rem -132.66rem; }
-  88.46% { background-position: -7.5rem -132.66rem; }
-  92.31% { background-position: 0rem -144.72rem; }
-  96.15% { background-position: -7.5rem -144.72rem; }
-  100.00% { background-position: 0rem -156.78rem; }
-}
+
 @keyframes chuansuogif {
-  0% { background-position: 0rem 0rem; }
-  3.85% { background-position: -7.5rem 0rem; }
-  7.69% { background-position: 0rem -12.06rem; }
-  11.54% { background-position: -7.5rem -12.06rem; }
-  15.38% { background-position: 0rem -24.12rem; }
-  19.23% { background-position: -7.5rem -24.12rem; }
-  23.08% { background-position: 0rem -36.18rem; }
-  26.92% { background-position: -7.5rem -36.18rem; }
-  30.77% { background-position: 0rem -48.24rem; }
-  34.62% { background-position: -7.5rem -48.24rem; }
-  38.46% { background-position: 0rem -60.30rem; }
-  42.31% { background-position: -7.5rem -60.30rem; }
-  46.15% { background-position: 0rem -72.36rem; }
-  50.00% { background-position: -7.5rem -72.36rem; }
-  53.85% { background-position: 0rem -84.42rem; }
-  57.69% { background-position: -7.5rem -84.42rem; }
-  61.54% { background-position: 0rem -96.48rem; }
-  65.38% { background-position: -7.5rem -96.48rem; }
-  69.23% { background-position: 0rem -108.54rem; }
-  73.08% { background-position: -7.5rem -108.54rem; }
-  76.92% { background-position: 0rem -120.60rem; }
-  80.77% { background-position: -7.5rem -120.60rem; }
-  84.62% { background-position: 0rem -132.66rem; }
-  88.46% { background-position: -7.5rem -132.66rem; }
-  92.31% { background-position: 0rem -144.72rem; }
-  96.15% { background-position: -7.5rem -144.72rem; }
-  100.00% { background-position: 0rem -156.78rem; }
+  0% { background-position: 0 0rem; }
+  4.55% { background-position: -7.50rem 0rem; }
+  9.09% { background-position: 0 -13.34rem; }
+  13.64% { background-position: -7.50rem -13.34rem; }
+  18.18% { background-position: 0 -26.68rem; }
+  22.73% { background-position: -7.50rem -26.68rem; }
+  27.27% { background-position: 0 -40.02rem; }
+  31.82% { background-position: -7.50rem -40.02rem; }
+  36.36% { background-position: 0 -53.36rem; }
+  40.91% { background-position: -7.50rem -53.36rem; }
+  45.45% { background-position: 0 -66.70rem; }
+  50.00% { background-position: -7.50rem -66.70rem; }
+  54.55% { background-position: 0 -80.04rem; }
+  59.09% { background-position: -7.50rem -80.04rem; }
+  63.64% { background-position: 0 -93.38rem; }
+  68.18% { background-position: -7.50rem -93.38rem; }
+  72.73% { background-position: 0 -106.72rem; }
+  77.27% { background-position: -7.50rem -106.72rem; }
+  81.82% { background-position: 0 -120.06rem; }
+  86.36% { background-position: -7.50rem -120.06rem; }
+  90.91% { background-position: 0 -133.40rem; }
+  95.45% { background-position: -7.50rem -133.40rem; }
+  100.00% { background-position: 0 -146.74rem; }
 }
 /*.chuansuo.move{
   -webkit-animation: csmoveanimate 0.3s forwards;
@@ -764,6 +734,8 @@ body{
   position: absolute;
   bottom: 0.52rem;
   width: 100%;
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
 }
 .end-wrap .end-logo{
   width: 3.88rem;
@@ -1074,23 +1046,17 @@ body{
 }
 
 .end-wrap .tips{
-  position: absolute;
-  width: 100%;
-  height: 2.48rem;
-  bottom: 3rem;
   background: url(../images/info-bac2.png) no-repeat;
-  background-size: 100% 65%;
-  /*opacity: 1;*/
-  -webkit-animation: showanimate 0.5s forwards;
-          animation: showanimate 0.5s forwards;
-
-  font-size: 0.28rem;
-  line-height: 0.48rem;
-  color: #ffffff;
-  padding: 0.8rem 1rem;
-  width: 5.24rem;
-  opacity: 0;
+  background-size: 100%;
+    -webkit-animation: showanimate .5s forwards;
+  animation: showanimate .5s forwards;
+  font-size: .28rem;
+  line-height: .48rem;
+  color: #fff;
+  padding: 1rem 1.2rem .8rem;
+  /*width: 5.36rem;*/
   text-align: justify;
+  margin-bottom: 0.94rem;
 }
 .info-wrap span.info3{
   text-align: center !important;
@@ -1104,6 +1070,237 @@ body{
   text-align: center;
   width: 100%;
 }
+
+/*.arrow-wrap{
+  position: absolute;
+  bottom: 0.5rem;
+  margin: 0 50%;
+  transform: translateX(-50%);
+}
+.arrow-down{
+  width: 1.26rem;
+  height: 1.26rem;
+  /*background: url(../images/anniu.png);
+  background-color: #cdfffe;
+  border-radius: 50%;
+
+  animation: arrwodown 0.6s infinite;
+  
+  opacity: 0.4;
+}*/
+.circle-replace{
+  width: 100%;
+  position: absolute;
+  bottom: 0.8rem;
+  margin: 0 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+  font-size: 0.32rem;
+}
+.circle-wrap{
+  position: absolute;
+  bottom: 0.5rem;
+  margin: 0 50%;
+  transform: translateX(-50%);
+  background-image: url('../images/circle.png');
+  background-size: 20rem 2rem;
+  width: 1rem;
+  height: 1rem;
+  animation: circleanimate 1.71s steps(1) infinite;
+}
+@keyframes circleanimate {
+  0% { background-position: 0 0; }
+  3.45% { background-position: -1rem 0; }
+  6.90% { background-position: -2rem 0; }
+  10.34% { background-position: -3rem 0; }
+  13.79% { background-position: -4rem 0; }
+  17.24% { background-position: -5rem 0; }
+  20.69% { background-position: -6rem 0; }
+  24.14% { background-position: -7rem 0; }
+  27.59% { background-position: -8rem 0; }
+  31.03% { background-position: -9rem 0; }
+  34.48% { background-position: -10rem 0; }
+  37.93% { background-position: -11rem 0; }
+  41.38% { background-position: -12rem 0; }
+  44.83% { background-position: -13rem 0; }
+  48.28% { background-position: -14rem 0; }
+  51.72% { background-position: -15rem 0; }
+  55.17% { background-position: -16rem 0; }
+  58.62% { background-position: -17rem 0; }
+  62.07% { background-position: -18rem 0; }
+  65.52% { background-position: -19rem 0; }
+  68.97% { background-position: 0 -1rem; }
+  72.41% { background-position: -1rem -1rem; }
+  75.86% { background-position: -2rem -1rem; }
+  79.31% { background-position: -3rem -1rem; }
+  82.76% { background-position: -4rem -1rem; }
+  86.21% { background-position: -5rem -1rem; }
+  89.66% { background-position: -6rem -1rem; }
+  93.10% { background-position: -7rem -1rem; }
+  96.55% { background-position: -8rem -1rem; }
+  100.00% { background-position: -9rem -1rem; }
+}
+.animate-control{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 119;
+}
+
+.dialog-wrap {
+  
+  margin-top: 1.96rem;
+  width: 100%;
+  height: 3.18rem;
+  background: url(../images/info-bac2.png) no-repeat;
+  background-size: 100% 100%;
+  /*opacity: 0;*/
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+.dialog-wrap.animate{
+  animation: infoanimation 0.52s forwards;
+}
+@keyframes infoanimation{
+  0%{
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.dialog-wrap span{
+  font-size: .28rem;
+  line-height: .48rem;
+  color: #fff;
+  margin: .5rem 1rem;
+  /* width: 5.24rem; */
+  text-align: justify;
+  display: inline-block;
+}
+.dialog-wrap.info2{
+  background-size: 100% 80% !important;
+}
+.dialog-wrap.info3{
+  background-size: 100% 62% !important;
+}
+.dialog-wrap.info3 span{
+  margin-left: 2.3rem;
+}
+
+.dialog-pop-wrap{
+  position: absolute;
+  bottom: 0.5rem;
+  height: 5.36rem;
+  width: 100%;
+}
+.dialog-pop-wrap .feng{
+  width: 100%;
+  height: 0.08rem;
+  background: url(../images/fengfeng.png) no-repeat;
+  background-size: 100% 100%;
+}
+.dialog-pop-wrap .speak-wrap{
+  height: 5.1rem;
+  margin: 0 0.57rem;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+.speak-wrap .wxr .head{
+  display: inline-block;
+  width: 1.27rem;
+  height: 1.28rem;
+  background: url(../images/head-wxr.png) no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+}
+.speak-wrap .wxr .kuang{
+  display: inline-block;
+  font-size: 0.26rem;
+  color: #78e0e1;
+  background: url(../images/kuang-wxr.png) no-repeat;
+  background-size: 100% 100%;
+  padding: 0.3rem 0.3rem 0.3rem 0.6rem;
+  max-width: 3.3rem;
+
+  position: absolute;
+  top: 0.36rem;
+  left: 1.32rem;
+}
+.speak-wrap .fast{
+  text-align: right;
+}
+.speak-wrap .fast .head{
+  display: inline-block;
+  width: 1.26rem;
+  height: 1.28rem;
+  background: url(../images/head-fast.png) no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+}
+.speak-wrap .fast .kuang{
+  display: inline-block;
+  font-size: 0.26rem;
+  color: #4faad6;
+  background: url(../images/kuang-fast-c.png) no-repeat;
+  background-size: 100% 100%;
+  padding: 0.3rem 0.6rem 0.3rem 0.4rem;
+  max-width: 3.3rem;
+  text-align: left;
+  
+  position: absolute;
+  right: 1.32rem;
+  top: 0.4rem;
+}
+
+.speak-wrap .fast i{
+  padding: 0 0.4rem;
+  font-style: normal;
+  animation: textanimate 1s infinite;
+}
+@keyframes textanimate{
+  0%{
+    text-shadow: 0px 0px 20px #4faad6;
+  }
+  50%{
+    text-shadow: 0px 0px 0px #4faad6;
+  }
+  100%{
+    text-shadow: 0px 0px 20px #4faad6;
+  }
+}
+
+.speak-wrap .two-line{
+  /*vertical-align: 0.1rem !important;*/
+}
+
+.speak-wrap li{
+  position: relative;
+  opacity: 0;
+}
+.speak-wrap li.animation{
+  animation: dialoganimation 0.5s forwards;
+  margin-bottom: 0.1rem;
+}
+@keyframes dialoganimation{
+  from{
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+
+
+
+
 
 
 

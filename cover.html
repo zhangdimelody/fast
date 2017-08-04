@@ -8,12 +8,110 @@
   <link rel="stylesheet" type="text/css" href="./css/cover.css">
 
   <script type="text/javascript" src="./js/adjust-screen.js"></script>
-  <script type="text/javascript" src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+  <!-- // <script type="text/javascript" src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script> -->
   <!-- // <script type="text/javascript" src="http://localhost:8700/test/js/CSSPlugin.js"></script> -->
 </head>
-<body>
+<body style="background-color: #0b0d22;">
+  <div class="dialog-pop-wrap displaynone">
+    <div class="feng"></div>
+    <ul class="speak-wrap  bear ">
+      <li class="wxr animation" order="0" >
+        <span class="head"></span>
+        <span class="kuang">看我的勺子亮不亮？</span>
+      </li>
+      <li class="fast" order="1" >
+        <span class="kuang" realtext="所谓缘分，是我有锅你有勺"><i>点击继续</i></span>
+        <span class="head"></span>
+      </li>
+      <li class="wxr" order="2" >
+        <span class="head"></span>
+        <span class="kuang">所谓忧伤，是我的勺够不着你的锅！</span>
+      </li>
+      <li class="fast" order="3" >
+        <span class="kuang" realtext="333s我有锅你有勺"><i>点击继续</i></span>
+        <span class="head"></span>
+      </li>
+      <li class="wxr" order="4" >
+        <span class="head"></span>
+        <span class="kuang">所谓忧伤，是我的勺够不着你的锅！</span>
+      </li>
+      <li class="fast" order="5" >
+        <span class="kuang" realtext="testtttttt"><i>点击继续</i></span>
+        <span class="head"></span>
+      </li>
+    </ul>
+  </div>
+
+
+  <script type="text/javascript">
+    // document.querySelectorAll(".bear li")
+    var liLength = document.querySelectorAll(".bear li").length;
+    var scrollWrapDom = document.querySelector(".speak-wrap");
+    
+    document.querySelector(".dialog-pop-wrap").classList.remove("displaynone");
+
+    console.log(liLength);
+    
+    talkShow(1);
+    function talkShow(order){
+      setTimeout(function(){
+        document.querySelector('[order="'+order+'"]').classList.add("animation");
+      }, 1000);
+    };
+    document.querySelector(".speak-wrap").addEventListener("click", function(){
+      var curNode = event.target;
+      var parentNode = curNode.parentElement;
+
+
+      if(curNode.tagName != "I" && !curNode.hasAttribute("realtext")) return;
+      if(curNode.hasAttribute("realtext")) parentNode = curNode;
+      // 填充文字
+      parentNode.innerHTML = parentNode.getAttribute("realtext");
+      var nextOrder = parseInt(parentNode.parentElement.getAttribute("order")) +1;
+      // 判断有无“点击继续”的下一个
+      if(nextOrder < liLength){
+        
+        setTimeout(function(){
+          document.querySelector('[order="'+nextOrder+'"]').classList.add("animation");
+          // 超过3个滚动外边框
+          if(nextOrder > 2){ 
+            scrollToEdge(nextOrder); 
+          }
+
+          var thirdOrder = nextOrder+1;
+          // 判断有无“点击继续”的下一个 的下一个“点击继续”
+          if(thirdOrder < liLength){
+            setTimeout(function(){
+              document.querySelector('[order="'+ thirdOrder +'"]').classList.add("animation");
+              if(thirdOrder > 2){ 
+                scrollToEdge(thirdOrder); 
+              }
+            }, 1000);
+
+          }
+        }, 1000);
+      }
+    });
+
+    function scrollToEdge(order){
+      // scrollWrapDom.scrollTop 
+      var scrollToH = (order-2) * document.querySelector(".speak-wrap li").clientHeight ;
+      scrollTo(scrollWrapDom, scrollToH, 300);
+    }
+    function scrollTo(element, to, duration) {
+      if (duration <= 0) return;
+      var difference = to - element.scrollTop;
+      var perTick = difference / duration * 10;
+
+      setTimeout(function() {
+        element.scrollTop = element.scrollTop + perTick;
+        if (element.scrollTop == to) return;
+        scrollTo(element, to, duration - 10);
+      }, 10);
+    }
+  </script>
         <!-- <div class="waixingren wxr-animation2" style="z-index:999"></div> -->
-  <div class="big-wrap">
+  <!-- <div class="big-wrap">
     <div class="chuansuo gif"></div>
     <div class="cover-bac ">
       <div class="logo"></div>
@@ -44,8 +142,10 @@
       </div>
       
     </div>
-  </div>
+  </div> -->
 
-  <script type="text/javascript" src="./js/twod-animations.js"></script>
+  <!-- // <script type="text/javascript" src="./js/twod-animations.js"></script> -->
+
+
 </body>
 </html>

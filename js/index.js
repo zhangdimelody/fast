@@ -11,6 +11,8 @@ import * as createjs from "createjs-module";
 import "./twod-animations.js";
 import "./share.js";
 import Styles from '../css/cover.css';
+import {mapping, nameArray} from './data.js'
+import {dialogCreateHtml, dialogShowAnimate} from './show-dialog.js'
 
 let container;
 let camera;
@@ -27,9 +29,23 @@ let qiu163,faguang, clickCounts = 0;
 let currentMeshName;
 let clocked = false;
 let faguangI;
+let luckyDogName;
 
 let startAnimate = false;
 // let animations,kfAnimationsLength;
+ 
+// dialogShowAnimate();
+randomLukyDog();
+let randomLukyDog = ()=>{
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  var num = getRandomInt(0,11);
+  luckyDogName = nameArray[num]; // 10\9\2\4
+  
+  dialogCreateHtml(luckyDogName);
+}
+
 
 var particleSystem;
 let createStars = () => {
@@ -113,6 +129,7 @@ let createStars = () => {
   particleSystem.name = "starrr"
   scene.add(particleSystem);
 }
+
 let init = () => {
   // createjs.Ticker.setFPS(60);
   container = document.querySelector('.fast-wrapper');
@@ -151,7 +168,6 @@ let init = () => {
   // createBac();
 }
 
-
 let render = () => {
   if (autoRotate) group.rotation.y -= 0.0008;
   if (objControl) objControl.update();
@@ -164,12 +180,11 @@ let render = () => {
 }
 
 let animate = () => {
-  // setTimeout(function(){
-
-    window.requestAnimationFrame(animate);
-  // }, 10000);
+  window.requestAnimationFrame(animate);
   render();
 }
+
+
 
 var model;
 
@@ -208,12 +223,12 @@ let createSkyDAE = () => {
   loader.load('./object/star59.dae', function(collada) {
     loadingTextDom.innerHTML = 100;
 
-    setTimeout(function(){
-      loadingWrapDom.classList.add("displaynone");
-    }, 800);
-    setTimeout(function(){
-      coverDom.classList.remove("displaynone");
-    }, 700);
+    // setTimeout(function(){
+    //   loadingWrapDom.classList.add("displaynone");
+    // }, 800);
+    // setTimeout(function(){
+    //   coverDom.classList.remove("displaynone");
+    // }, 700);
 
     console.log(collada);
     model = collada.scene;
@@ -261,7 +276,7 @@ let createSkyDAE = () => {
         qiu163.visible = false;
       } else if ((child instanceof THREE.Mesh) && (child.parent.name == "faguang")) {
         console.log("faguang")
-        // debugger
+        
         faguang = child.parent;
         faguang.visible = false;
       }
@@ -407,56 +422,6 @@ let handleRotate = (obj) => {
   objControl = new OrbitControls(obj);
   objControl.target.set(obj.position);
 };
-const mapping = {
-  "tuxing.1": {
-    pic: "tuxing",
-    text: "土星大气以氢、氦为主，它有一个显著的行星环，主要的成分是冰的微粒和较少数的岩石残骸以及尘土（天气这么热，如果人类能在冰的世界里冬眠，那该多好~）。"
-  },
-  "tuxing2": {
-    pic: "tuxing",
-    text: "土星有一个显著的行星环，其主要成分是冰的微粒和较少数的岩石残骸以及尘土。（这么热，如果人类能在冰的世界里冬眠，那该多好~）"
-  },
-  "qiu2.1": {
-    pic: "haiwang",
-    text: "表面有荧荧的淡蓝色光，有着太阳系最强烈的风暴，风速高达2100km/h。云顶的温度是-218 ℃（55K），是太阳系最冷的地区之一（这里没人，就是风大）。"
-  },
-  "daxiongxian.15": {
-    pic: "bigbear",
-    text: "北斗七星所在星座，它无疑是北方天空中最醒目、最重要的星座。把大熊星座中的七颗亮星看做一个勺子的形状，这就是我们常说的北斗七星。"
-  },
-  "shinv.2": {
-    pic: "waitress",
-    text: "又称处女座，是最大的黄道带星座，在全天88个星座中，面积排行第二位，仅次于长蛇座。它是丰收女神的象征，左手拿着麦穗，右手拿着镰刀。"
-  },
-  "heijianbian.1": {
-    pic: "halei",
-    text: "哈雷彗星是唯一能用裸眼直接从地球看见的短周期彗星，也是人一生中唯一以裸眼可能看见两次的彗星（下次回归时间2061年7月28日，44年后我们再相见！）。"
-  },
-  "nanshizi.1": {
-    pic: "shizi",
-    text: "88个星座中最小的一个，星座虽小，但亮星很多。郑和下西洋时，曾用这个星座来导航。新西兰、澳大利亚、巴布亚新几内亚和萨摩亚的国旗上都有南十字座。"
-  },
-  "huo": {
-    pic: "mars",
-    text: "火星最像地球，CO₂为主的大气稀薄又寒冷。它是一颗“沙漠行星”，每年常有尘暴发生（如果未来人类对外星球殖民，它很可能是我们的首选地点）。"
-  },
-  "shizi.1": {
-    pic: "lion",
-    text: "传说海格列斯是天神宙斯的私生子，出生时遭天后赫拉诅咒，一生要面临十二项考验。第一项就是与刀枪不入、力大无比的狮子搏斗。几经厮杀，海格列斯将狮子杀死。宙斯就把狮子升上天空，炫耀儿子的战绩。"
-  },
-  "kai": {
-    pic: "kaipule",
-    text: "2015年发现的迄今为止最像地球的宜居行星，有可能拥有大气层和流动水，被称为地球2.0，“地球的表哥”（不过，到底有没有人类还不得而知）。"
-  },
-  "xinxin.1": {
-    pic: "mingwang",
-    text: "这是一颗“有爱”的星球，它有一个由氮冰构成的巨大心形区域——汤博区。冥王星是体积最大的海外天体，因被定义为矮行星，所以从太阳系九大行星中除名。"
-  },
-  "_163": {
-    pic: "",
-    text: ""
-  }
-};
 
 let fclock;
 let tweenCameraToMesh = () => {
@@ -489,9 +454,9 @@ let tweenCameraToMesh = () => {
     if(currentMeshName == focusObj.name) return;
     currentMeshName = focusObj.name;
     console.log("selectedObject.parent.name", currentMeshName);
-    
+    // debugger
     if (!mapping[focusObj.name]) return;
-
+    
     tweenToMesh(focusObj);
 
   } else {
@@ -816,6 +781,7 @@ document.querySelector(".continue").addEventListener("click", function() {
     audio2.pause();
     audio1.play();
   }
+  musicDom.setAttribute("curplay","audio1");
 });
 document.querySelector(".share").addEventListener("click", function(){
   document.querySelector(".share-w").classList.remove("displaynone");
@@ -829,6 +795,7 @@ document.querySelector(".s-guangyun").addEventListener("click", function() {
 
 var audio1 = document.querySelector(".audio1");
 var audio2 = document.querySelector(".audio2");
+var audio6 = document.querySelector(".audio6");
 
 
 
@@ -841,9 +808,15 @@ document.querySelector(".music").addEventListener("click", function(){
   if(audioclass.contains("on")){
     audioclass.remove("on")
     curDom.pause();
+    if(curAudio == "audio5"){
+      audio1.pause();
+    }
   }else{
     audioclass.add("on")
     curDom.play();
+    if(curAudio == "audio5"){
+      audio1.play();
+    }
   }
 })
 // document.querySelector(".music").click();
@@ -851,25 +824,24 @@ document.querySelector(".music").addEventListener("click", function(){
 
  
 
-const wxren = document.querySelector(".waixingren");
-document.querySelector(".waixingren").addEventListener("click", function(){
-  // setTimeout(function(){
-    wxren.classList.remove("wxr-animation2");
-    wxren.classList.add("wxr-animation3");
-    setTimeout(function(){
-      wxren.classList.remove("wxr-animation3");
-      wxren.classList.add("wxr-animation4");
+// const wxren = document.querySelector(".waixingren");
+// document.querySelector(".waixingren").addEventListener("click", function(){
+//   // setTimeout(function(){
+//     wxren.classList.remove("wxr-animation2");
+//     wxren.classList.add("wxr-animation3");
+//     setTimeout(function(){
+//       wxren.classList.remove("wxr-animation3");
+//       wxren.classList.add("wxr-animation4");
 
-      setTimeout(function(){
-        document.querySelector(".end-wrap .tips").classList.remove("hide");
-        setTimeout(function(){
-          document.querySelector(".last-page").classList.remove("displaynone");
-        }, 800);
-      }, 2000);
+//       setTimeout(function(){
+//         document.querySelector(".end-wrap .tips").classList.remove("hide");
+//         setTimeout(function(){
+//           document.querySelector(".last-page").classList.remove("displaynone");
+//         }, 800);
+//       }, 2000);
 
-    }, 0.47*1000)
-  // }, 2.2*1000)
-});
+//     }, 0.47*1000)
+// });
 
 window.addEventListener('resize', onWindowResize, false);
 
@@ -906,6 +878,7 @@ screenOrientationListener();
 
 const audio3 = document.querySelector(".audio3");
 const audio4 = document.querySelector(".audio4");
+const audio5 = document.querySelector(".audio5");
 const musicDom = document.querySelector(".music");
 const musicClasslist = musicDom.classList;
 const bac = document.querySelector(".cover-bac");
@@ -914,9 +887,13 @@ const chuansuo = document.querySelector(".chuansuo");
 // const coverDom = document.querySelector(".chuansuo");
 
 
-document.querySelector(".start-chuansuo").addEventListener("click", function(e){
+document.querySelector(".start-chuansuo").addEventListener("touchstart", function(e){
+  
   if(musicClasslist.contains("on")){
-    audio3.pause();
+    // 开始穿梭
+    audio5.pause();
+    audio1.pause();
+    audio6.play();
     audio4.play();
   }
   musicDom.setAttribute("curplay","audio4");
@@ -946,11 +923,11 @@ document.querySelector(".start-chuansuo").addEventListener("click", function(e){
     }, 4000);
 
 
-  }, 3380);
+  }, 2640);
 
 });
 
 
 
-    // animate();
+    animate();
 

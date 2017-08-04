@@ -35,7 +35,7 @@ module.exports = function() {
       document.addEventListener('WeixinJSBridgeReady', function() {
         // wx.ready(function() {
             document.querySelector(".audio1").play();
-            document.querySelector(".audio1").pause();
+            // document.querySelector(".audio1").pause();
 
             document.querySelector(".audio2").play();
             document.querySelector(".audio2").pause();
@@ -45,6 +45,12 @@ module.exports = function() {
             
             document.querySelector(".audio4").play();
             document.querySelector(".audio4").pause();
+
+            document.querySelector(".audio5").play();
+            document.querySelector(".audio5").pause();
+
+            document.querySelector(".audio6").play();
+            document.querySelector(".audio6").pause();
         // });
 
         window.WeixinJSBridge.on('menu:share:appmessage', function(argv) {
