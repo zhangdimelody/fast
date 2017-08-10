@@ -232,7 +232,6 @@ let createSkyDAE = () => {
   var onError = function(xhr) {};
   let loader = new ColladaLoader();
   loader.options.convertUpAxis = true;
-  loader.load('http://img1.cache.netease.com/utf8/3g/fast/star59.js', function(collada) {
     loadingTextDom.innerHTML = 100;
 
     setTimeout(function() {
