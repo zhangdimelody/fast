@@ -11,8 +11,14 @@ import * as createjs from "createjs-module";
 import "./twod-animations.js";
 import "./share.js";
 import Styles from '../css/cover.css';
-import {mapping, nameArray} from './data.js'
-import {dialogCreateHtml, dialogShowAnimate} from './show-dialog.js'
+import {
+  mapping,
+  nameArray
+} from './data.js'
+import {
+  dialogCreateHtml,
+  dialogShowAnimate
+} from './show-dialog.js'
 
 let container;
 let camera;
@@ -25,7 +31,7 @@ let orientControls;
 let animations;
 let mixer;
 let autoRotate = true;
-let qiu163,faguang, clickCounts = 0;
+let qiu163, faguang, clickCounts = 0;
 let currentMeshName;
 let clocked = false;
 let faguangI;
@@ -33,18 +39,24 @@ let luckyDogName;
 
 let startAnimate = false;
 // let animations,kfAnimationsLength;
- 
-// dialogShowAnimate();
-randomLukyDog();
-let randomLukyDog = ()=>{
+
+
+var audio1 = document.querySelector(".audio1");
+var audio2 = document.querySelector(".audio2");
+var audio6 = document.querySelector(".audio6");
+
+
+
+let randomLukyDog = () => {
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  var num = getRandomInt(0,11);
-  luckyDogName = nameArray[num]; // 10\9\2\4
-  
+  var num = getRandomInt(0, 10); //2 //
+  luckyDogName = nameArray[num];
+  console.log(luckyDogName);
   dialogCreateHtml(luckyDogName);
 }
+randomLukyDog();
 
 
 var particleSystem;
@@ -150,8 +162,8 @@ let init = () => {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x06091b, 1);
-  var pixel = (window.devicePixelRatio>2)? 1 : window.devicePixelRatio;
-  renderer.setPixelRatio(pixel); 
+  var pixel = (window.devicePixelRatio > 2) ? 1 : window.devicePixelRatio;
+  renderer.setPixelRatio(pixel);
   container.appendChild(renderer.domElement);
 
 
@@ -213,30 +225,28 @@ let createSkyDAE = () => {
   var onProgress = function(xhr) {
     if (xhr) {
       var percentComplete = xhr.loaded / xhr.total * 100;
-      console.log(Math.round(percentComplete, 2) + '% downloaded');
+      // console.log(Math.round(percentComplete, 2) + '% downloaded');
       loadingTextDom.innerHTML = Math.round(percentComplete, 2);
     }
   };
   var onError = function(xhr) {};
   let loader = new ColladaLoader();
   loader.options.convertUpAxis = true;
-  loader.load('./object/star59.dae', function(collada) {
+  loader.load('http://img1.cache.netease.com/utf8/3g/fast/star59.js', function(collada) {
     loadingTextDom.innerHTML = 100;
 
-    // setTimeout(function(){
-    //   loadingWrapDom.classList.add("displaynone");
-    // }, 800);
-    // setTimeout(function(){
-    //   coverDom.classList.remove("displaynone");
-    // }, 700);
+    setTimeout(function() {
+      loadingWrapDom.classList.add("displaynone");
+    }, 400);
+    setTimeout(function() {
+      coverDom.classList.remove("displaynone");
+    }, 300);
 
-    console.log(collada);
     model = collada.scene;
     group.add(model);
 
     // animations = collada.animations;
     // kfAnimationsLength = animations.length;
-
     // processArray(model.children);
 
     model.traverse(function(child) {
@@ -271,12 +281,12 @@ let createSkyDAE = () => {
         // child.intensity = 1;
         // console.log(child)
       } else if ((child instanceof THREE.Mesh) && (child.parent.name == "_163")) {
-        console.log("_163333333999999")
+        // console.log("_163333333999999")
         qiu163 = child.parent;
         qiu163.visible = false;
       } else if ((child instanceof THREE.Mesh) && (child.parent.name == "faguang")) {
-        console.log("faguang")
-        
+        // console.log("faguang")
+
         faguang = child.parent;
         faguang.visible = false;
       }
@@ -284,7 +294,7 @@ let createSkyDAE = () => {
     }, onProgress, onError);
 
     // animate();
-    
+
     //no use setTimeout(function(){ 
     //   document.querySelector(".xinhaoshowtip").classList.add("hide");
     //   document.querySelector(".guotip").classList.add("hide");
@@ -368,51 +378,52 @@ let createBac = () => {
   scene.add(obj);
 }
 init();
-document.querySelector(".guo").addEventListener("touchstart", function() {
-  console.log("ccc33");
-  event.stopPropagation();
-  if (event.target.className == "guo") {
-    const curNode = event.target;
-    curNode.classList.add("guozoom");
-    const guotip = document.querySelector(".guotip")
-    guotip.classList.remove("hide");
-    setTimeout(function() {
-      guotip.classList.add("hide");
-      curNode.classList.remove("guozoom");
-    }, 2000);
-    return;
-  }
-});
-
+// document.querySelector(".guo").addEventListener("touchstart", function() {
+//   console.log("ccc33");
+//   event.stopPropagation();
+//   if (event.target.className == "guo") {
+//     const curNode = event.target;
+//     curNode.classList.add("guozoom");
+//     const guotip = document.querySelector(".guotip")
+//     guotip.classList.remove("hide");
+//     setTimeout(function() {
+//       guotip.classList.add("hide");
+//       curNode.classList.remove("guozoom");
+//     }, 2000);
+//     return;
+//   }
+// });
 document.querySelector(".fast-wrapper").addEventListener("click", function() {
-  console.log(333999999);
-  if(clocked) return;
+  // console.log(333999999);
+  if (clocked) return;
   clickScreen(event)
 }, false);
 
-document.querySelector(".info-page").addEventListener("click", function(){
+document.querySelector(".info-page").addEventListener("click", function() {
   clickScreen(event)
 }, false);
 
 
 
-let clickScreen = (event)=>{
+let clickScreen = (event) => {
   event.stopPropagation();
   event.preventDefault();
-  console.log("d33");
-  if (currentMeshName == "_163" ) return;
+  document.querySelector(".s-tips").classList.add("displaynone");
 
-  if (event.target.className == "guo") {
-    const curNode = event.target;
-    curNode.classList.add("guozoom");
-    const guotip = document.querySelector(".guotip")
-    guotip.classList.remove("hide");
-    setTimeout(function() {
-      guotip.classList.add("hide");
-      curNode.classList.remove("guozoom");
-    }, 2000);
-    return;
-  }
+  // if (clocked) return;
+  // if (currentMeshName == "_163") return;
+
+  // if (event.target.className == "guo") {
+  //   const curNode = event.target;
+  //   curNode.classList.add("guozoom");
+  //   const guotip = document.querySelector(".guotip")
+  //   guotip.classList.remove("hide");
+  //   setTimeout(function() {
+  //     guotip.classList.add("hide");
+  //     curNode.classList.remove("guozoom");
+  //   }, 2000);
+  //   return;
+  // }
   // showInfoPage();
   tweenCameraToMesh(event);
 
@@ -445,18 +456,17 @@ let tweenCameraToMesh = () => {
 
   if (intersects.length > 0) {
     // document.querySelector(".s-guangyun").classList.add("hide");
-    document.querySelector(".s-tips").classList.add("displaynone");
     clickCounts++;
     autoRotate = false;
 
     var selectedObject = intersects[0].object;
     var focusObj = selectedObject.parent;
-    if(currentMeshName == focusObj.name) return;
+    if (currentMeshName == focusObj.name) return;
     currentMeshName = focusObj.name;
     console.log("selectedObject.parent.name", currentMeshName);
     // debugger
     if (!mapping[focusObj.name]) return;
-    
+
     tweenToMesh(focusObj);
 
   } else {
@@ -464,130 +474,148 @@ let tweenCameraToMesh = () => {
   }
 
 }
-let tweenToMesh = (focusObj)=>{
-
+let tweenToMesh = (focusObj) => {
+  clocked = true;
   var vecPos = focusObj.getWorldPosition();
+  console.log(focusObj)
+  console.log("vecPos--------")
+  console.log(vecPos)
   var tweenPos = {
-      x: vecPos.x,
-      y: vecPos.y,
-      z: vecPos.z
-        // y: vecPos.y - 5,
-        // z: vecPos.z - 20
-    };
-    var tweenRotation = "y";
-    var stopTime = 800;
-    switch (focusObj.name) {
-      case "daxiongxian.15":
-        tweenPos.y -= 2;
-        stopTime = 650
-        break;
-      case "kai":
-        tweenPos.y += 4;
-        stopTime = 1050;
-        break;
-      case "tuxing2":
-        tweenPos.y += 4;
-        stopTime = 800;
-        break;
-      case "tuxing.1":
-        tweenPos.y += 4;
-        stopTime = 800;
-        break;
-      case "shizi.1":
-        tweenPos.y -= 6;
-        stopTime = 800;
-        tweenRotation = "y";
-        break;
-      case "qiu2.1":
-        tweenPos.y += 2;
-        stopTime = 750;
-        break;
-      case "nanshizi.1":
-        tweenPos.y -= 6;
-        stopTime = 400;
-        tweenRotation = "y";
-        break;
-      case "heijianbian.1":
-        tweenPos.y += 4;
-        stopTime = 1000;
-        break;
-      case "xinxin.1":
-        tweenPos.y += 3;
-        stopTime = 900;
-        break;
-      case "_163":
-        tweenPos.y += 10;
-        stopTime = 900;
-        break;
-      case "shinv.2":
-        tweenPos.y -= 4;
-        break;
-      default:
-        break;
-    }
-    // handleRotate(focusObj);
+    x: vecPos.x,
+    y: vecPos.y,
+    z: vecPos.z
+      // y: vecPos.y - 5,
+      // z: vecPos.z - 20
+  };
+  var tweenRotation = "y";
+  var stopTime = 800;
+  switch (focusObj.name) {
+    case "daxiongxian.15":
+      tweenPos.y -= 2;
+      stopTime = 650
+      break;
+    case "kai":
+      tweenPos.y += 4;
+      stopTime = 1050;
+      break;
+    case "tuxing2":
+      tweenPos.y += 4;
+      stopTime = 800;
+      break;
+    case "tuxing.1":
+      tweenPos.y += 4;
+      stopTime = 800;
+      break;
+    case "shizi.1":
+      tweenPos.y -= 6;
+      stopTime = 800;
+      tweenRotation = "y";
+      break;
+    case "qiu2.1":
+      tweenPos.y += 2;
+      stopTime = 750;
+      break;
+    case "nanshizi.1":
+      tweenPos.y -= 12;
+      stopTime = 350;
+      tweenRotation = "y";
+      break;
+    case "heijianbian.1":
+      tweenPos.y += 4;
+      stopTime = 1000;
+      break;
+    case "xinxin.1":
+      tweenPos.y += 3;
+      stopTime = 900;
+      break;
+    case "_163":
+      tweenPos.y += 10;
+      stopTime = 900;
+      break;
+    case "shinv.2":
+      tweenPos.y -= 6;
+      stopTime = 700
+      break;
+    default:
+      break;
+  }
+  // handleRotate(focusObj);
 
-    // createjs.Tween.get(group.rotation.y)
-    // .to({ y : -1 * Math.PI }, 300,createjs.Ease.linear)
-    // .to({ y : 1 * Math.PI }, 300,createjs.Ease.linear);
+  // createjs.Tween.get(group.rotation.y)
+  // .to({ y : -1 * Math.PI }, 300,createjs.Ease.linear)
+  // .to({ y : 1 * Math.PI }, 300,createjs.Ease.linear);
 
 
-    var t1;
-    setTimeout(function() {
-      t1.setPaused(true);
-      // last page show
-      if (focusObj.name == "_163") {
-        document.querySelector(".end-wrap").classList.remove("hide");
-        document.querySelector(".guo").classList.add("hide");
-        // document.querySelector(".guangyun").classList.remove("hide");
-
-        const wxren = document.querySelector(".waixingren");
-        wxren.classList.add("wxr-animation1");
-        setTimeout(function(){
-          wxren.classList.remove("wxr-animation1");
-          wxren.classList.add("wxr-animation2");
-          
-        }, 0.59 * 1000)
-      } else {
-        showInfoPage(focusObj.name);
+  var t1;
+  setTimeout(function() {
+    document.querySelector(".s-tips").classList.add("displaynone");
+    
+    t1.setPaused(true);
+    if (mapping[focusObj.name].classname == mapping[luckyDogName].classname) {
+      // 中奖了
+      if(musicClasslist.contains("on")){
+        audio1.pause();
+        audio2.play();
       }
-    }, stopTime);
+      musicDom.setAttribute("curplay","audio2");
+      // 设置分享
+      window.shareInfoObj = {
+        counts: clickCounts,
+        name: mapping[luckyDogName].chinesename
+      }
 
-    t1 = createjs.Tween.get(camera.position)
-      // .to({ x:-2.5, y:50, z:85.5 }, 600,createjs.Ease.linear)
-      .to({
-        x: 0,
-        y: 0,
-        z: 0
-      }, 600, createjs.Ease.linear)
-      .to({
-        x: tweenPos.x,
-        y: tweenPos.y - 9,
-        z: tweenPos.z
-      }, 600, createjs.Ease.linear);
-
-
-    createjs.Tween.get(controls.target)
-      .to({
-        x: tweenPos.x,
-        y: tweenPos.y - 9,
-        z: tweenPos.z + 0.001
-      }, 600, createjs.Ease.linear);
-
-    controls.enabled = false;
-    // orientControls.enabled = false;
-
-    if (focusObj.name != "_163") {
-      fclock = setInterval(function() {
-        focusObj.rotation[tweenRotation] -= 0.01;
-      }, 100);
+      
+      if (luckyDogName == "shizi.1") {
+        document.querySelector(".szlxy").classList.remove("displaynone");
+      }
+      // 出提示+外星人+对话框
+      document.querySelector(".find-luckydog").classList.remove("hide");
+      dialogShowAnimate();
+      // 对话框隐藏
+      setTimeout(function() {
+        document.querySelector(".find-luckydog").classList.add("hide");
+      }, 2500);
+    } else {
+      showInfoPage(focusObj.name);
     }
+  }, stopTime);
+
+  t1 = createjs.Tween.get(camera.position)
+    // .to({ x:-2.5, y:50, z:85.5 }, 600,createjs.Ease.linear)
+    .to({
+      x: 0,
+      y: 0,
+      z: 0
+    }, 600, createjs.Ease.linear)
+    .to({
+      x: tweenPos.x,
+      y: tweenPos.y - 9,
+      z: tweenPos.z
+    }, 600, createjs.Ease.linear);
+
+
+  createjs.Tween.get(controls.target)
+    .to({
+      x: tweenPos.x,
+      y: tweenPos.y - 9,
+      z: tweenPos.z + 0.001
+    }, 600, createjs.Ease.linear);
+
+  controls.enabled = false;
+  // orientControls.enabled = false;
+
+  if (focusObj.name != "_163") {
+    fclock = setInterval(function() {
+      focusObj.rotation[tweenRotation] -= 0.01;
+    }, 100);
+  }
 }
 
 let tweenToOrigin = () => {
+  if (clocked) return;
   // document.querySelector(".guangyun").classList.add("hide");
-  document.querySelector(".s-guangyun").classList.add("hide");
-  document.querySelector(".guo").classList.remove("hide");
+  // document.querySelector(".s-guangyun").classList.add("hide");
+  // document.querySelector(".guo").classList.remove("hide");
 
   // clearInterval(faguangI);
   // faguang.visible = false;
@@ -623,6 +651,7 @@ let tweenToOrigin = () => {
   controls.enabled = true;
   // orientControls.enabled = true;
 
+  document.querySelector(".dialog-pop-wrap").classList.add("hide");
 
   let infoDom = document.querySelector(".info-page");
   if (infoDom.style.bottom != "0rem") return;
@@ -635,69 +664,70 @@ let tweenToOrigin = () => {
     .to({
       bottom: -7
     }, 500, createjs.Ease.Linear)
+
   function changeInfoPos(event) {
     var data = event.currentTarget.target;
     infoDom.style.bottom = data.bottom + "rem";
   }
 
-  let guoDom = document.querySelector(".guo");
+  // let guoDom = document.querySelector(".guo");
   // if (guoDom.style.bottom != "-2rem") return;
-  createjs.Tween.get({
-      bottom: -2
-    }, {
-      loop: false,
-      onChange: changeGuoPos
-    })
-    .to({
-      bottom: 0
-    }, 500, createjs.Ease.Linear)
-  function changeGuoPos(event) {
-    var data = event.currentTarget.target;
-    guoDom.style.bottom = data.bottom + "rem";
-  }
-  
-  
-  
-  switch(clickCounts){
+  // createjs.Tween.get({
+  //     bottom: -2
+  //   }, {
+  //     loop: false,
+  //     onChange: changeGuoPos
+  //   })
+  //   .to({
+  //     bottom: 0
+  //   }, 500, createjs.Ease.Linear)
+
+  // function changeGuoPos(event) {
+  //   var data = event.currentTarget.target;
+  //   guoDom.style.bottom = data.bottom + "rem";
+  // }
+
+
+  switch (clickCounts) {
     case 1:
       showTipFunc("不是这个星球发出的信号！")
       break;
     case 4:
       showTipFunc("也不是这个哦~")
       break;
-    case 5:
-      clocked = true;
-      if(musicClasslist.contains("on")){
-        audio1.pause();
-        audio2.play();
-      }
-      musicDom.setAttribute("curplay","audio2");
+      // case 5:
+      //   clocked = true;
+      //   if(musicClasslist.contains("on")){
+      //     audio1.pause();
+      //     audio2.play();
+      //   }
+      //   musicDom.setAttribute("curplay","audio2");
 
-      setTimeout(function(){
-        console.log("33222");
-        show163Animate();
-      }, 1000);
-      // faguangI = setInterval(function(){
-      //   faguang.visible = !faguang.visible;
-      // }, 2000);
-      break;
+      //   setTimeout(function(){
+      //     console.log("33222");
+      //     show163Animate();
+      //   }, 1000);
+      //   // faguangI = setInterval(function(){
+      //   //   faguang.visible = !faguang.visible;
+      //   // }, 2000);
+      //   break;
   }
 }
-  
-let showTipFunc = (text)=>{
+
+let showTipFunc = (text) => {
   const xinhaotip = document.querySelector(".xinhaoshowtip")
   xinhaotip.innerHTML = text;
   xinhaotip.classList.remove("hide");
   setTimeout(function() {
     xinhaotip.classList.add("hide")
-  }, 4000);
+  }, 2000);
 }
 
-let show163Animate = ()=>{
-  
+let show163Animate = () => {
+
   showTipFunc("信号又出现了！！！")
-  qiu163.visible = true;
-  
+    // qiu163.visible = true;
+
 
   var qiutweenPos = qiu163.getWorldPosition();
   var t2;
@@ -711,26 +741,28 @@ let show163Animate = ()=>{
   }, 50);
 
   t2 = createjs.Tween.get(camera.position)
-  .to({
-    x: 0,
-    y: 0,
-    z: 0
-  }, 600, createjs.Ease.linear)
-  .to({
-    x: qiutweenPos.x,
-    y: qiutweenPos.y ,
-    z: qiutweenPos.z
-  }, 600, createjs.Ease.linear);
+    .to({
+      x: 0,
+      y: 0,
+      z: 0
+    }, 600, createjs.Ease.linear)
+    .to({
+      x: qiutweenPos.x,
+      y: qiutweenPos.y,
+      z: qiutweenPos.z
+    }, 600, createjs.Ease.linear);
 
   createjs.Tween.get(controls.target)
     .to({
-      x: qiutweenPos.x ,
+      x: qiutweenPos.x,
       y: qiutweenPos.y - 1 - 20,
       z: qiutweenPos.z + 0.001
     }, 600, createjs.Ease.linear);
 }
 let showInfoPage = (name) => {
-
+  if (name == "shizi.1") {
+    document.querySelector(".szlxy").classList.remove("displaynone");
+  }
   let clist = document.querySelector(".info-page .img").classList;
 
   for (var i = 0; i < clist.length; i++) {
@@ -751,81 +783,86 @@ let showInfoPage = (name) => {
     .to({
       bottom: 0
     }, 500, createjs.Ease.Linear)
+
   function changeInfoPos(event) {
     var data = event.currentTarget.target;
     infoDom.style.bottom = data.bottom + "rem";
   }
 
-  let guoDom = document.querySelector(".guo");
-  // if (guoDom.style.bottom != "0rem") return;
-  createjs.Tween.get({
-      bottom: 0
-    }, {
-      loop: false,
-      onChange: changeGuoPos
-    })
-    .to({
-      bottom: -2
-    }, 500, createjs.Ease.Linear)
-  function changeGuoPos(event) {
-    var data = event.currentTarget.target;
-    guoDom.style.bottom = data.bottom + "rem";
-  }
+  // let guoDom = document.querySelector(".guo");
+  // // if (guoDom.style.bottom != "0rem") return;
+  // createjs.Tween.get({
+  //     bottom: 0
+  //   }, {
+  //     loop: false,
+  //     onChange: changeGuoPos
+  //   })
+  //   .to({
+  //     bottom: -2
+  //   }, 500, createjs.Ease.Linear)
+
+  // function changeGuoPos(event) {
+  //   var data = event.currentTarget.target;
+  //   guoDom.style.bottom = data.bottom + "rem";
+  // }
+  clocked = false;
 }
 
 
-document.querySelector(".continue").addEventListener("click", function() {
-  document.querySelector(".end-wrap").classList.add("hide");
-  tweenToOrigin();
-  if(musicClasslist.contains("on")){
-    audio2.pause();
-    audio1.play();
-  }
-  musicDom.setAttribute("curplay","audio1");
+document.querySelector(".continue").addEventListener("touchstart", function() {
+  window.location.reload();
+  // document.querySelector(".end-wrap").classList.add("hide");
+  // tweenToOrigin();
+  // if(musicClasslist.contains("on")){
+  //   audio2.pause();
+  //   audio1.play();
+  // }
+  // musicDom.setAttribute("curplay","audio1");
 });
-document.querySelector(".share").addEventListener("click", function(){
+document.querySelector(".szlxy").addEventListener("touchstart", function() {
+  if((document.querySelector(".dialog-pop-wrap").classList+"").indexOf("hide") == -1) return;
+  document.querySelector(".szlxy").classList.add("displaynone");
+  tweenToOrigin();
+});
+document.querySelector(".share").addEventListener("touchstart", function() {
   document.querySelector(".share-w").classList.remove("displaynone");
 });
-document.querySelector(".share-w").addEventListener("click", function(){
+document.querySelector(".share-w").addEventListener("touchstart", function() {
   document.querySelector(".share-w").classList.add("displaynone");
 });
-document.querySelector(".s-guangyun").addEventListener("click", function() {
+document.querySelector(".s-guangyun").addEventListener("touchstart", function() {
   tweenToMesh(qiu163)
 });
 
-var audio1 = document.querySelector(".audio1");
-var audio2 = document.querySelector(".audio2");
-var audio6 = document.querySelector(".audio6");
 
 
 
+document.querySelector(".music").addEventListener("touchstart", function() {
+    var audioclass = event.target.classList;
+    var curAudio = event.target.getAttribute("curplay");
 
-document.querySelector(".music").addEventListener("click", function(){
-  var audioclass = event.target.classList;
-  var curAudio = event.target.getAttribute("curplay");
-
-  var curDom = document.querySelector("."+ curAudio +"");
-  if(audioclass.contains("on")){
-    audioclass.remove("on")
-    curDom.pause();
-    if(curAudio == "audio5"){
-      audio1.pause();
+    var curDom = document.querySelector("." + curAudio + "");
+    if (audioclass.contains("on")) {
+      audioclass.remove("on")
+      curDom.pause();
+      if (curAudio == "audio5") {
+        audio3.pause();
+      }
+    } else {
+      audioclass.add("on")
+      curDom.play();
+      if (curAudio == "audio5") {
+        audio3.play();
+      }
     }
-  }else{
-    audioclass.add("on")
-    curDom.play();
-    if(curAudio == "audio5"){
-      audio1.play();
-    }
-  }
-})
-// document.querySelector(".music").click();
-// document.querySelector(".music").click();
+  })
+  // document.querySelector(".music").click();
+  // document.querySelector(".music").click();
 
- 
+
 
 // const wxren = document.querySelector(".waixingren");
-// document.querySelector(".waixingren").addEventListener("click", function(){
+// document.querySelector(".waixingren").addEventListener("touchstart", function(){
 //   // setTimeout(function(){
 //     wxren.classList.remove("wxr-animation2");
 //     wxren.classList.add("wxr-animation3");
@@ -868,7 +905,7 @@ function screenOrientationListener() {
       innerWidthTmp = iw;
     }
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   };
   //间隔固定事件检查是否转屏，默认300毫秒
   setTimeout(screenOrientationListener, 300);
@@ -887,47 +924,53 @@ const chuansuo = document.querySelector(".chuansuo");
 // const coverDom = document.querySelector(".chuansuo");
 
 
-document.querySelector(".start-chuansuo").addEventListener("touchstart", function(e){
-  
-  if(musicClasslist.contains("on")){
+document.querySelector(".start-chuansuo .start").addEventListener("touchstart", function(e) {
+
+  e.preventDefault();
+  e.stopPropagation();
+  // 音乐控制
+  if (musicClasslist.contains("on")) {
     // 开始穿梭
     audio5.pause();
-    audio1.pause();
+    audio3.pause();
     audio6.play();
     audio4.play();
   }
-  musicDom.setAttribute("curplay","audio4");
+  musicDom.setAttribute("curplay", "audio4");
 
-  bac.classList.add("move");
-  chuansuo.classList.add("move");
-  // continueAnimate();
-  setTimeout(function(){
-    // 穿梭完了 显示场景
-    if(musicClasslist.contains("on")){
-      audio4.pause();
-      audio1.play();
-    }
-    musicDom.setAttribute("curplay","audio1");
-    
-    daeDom.classList.remove("displaynone");
-    coverDom.classList.add("displaynone");
-    
-
-    animate();
+  setTimeout(function() {
+    bac.classList.add("move");
+    chuansuo.classList.add("move");
+    // continueAnimate();
 
 
-    setTimeout(function(){
-      document.querySelector(".find-xinhaoshowtip").classList.add("hide");
-      document.querySelector(".s-tips").classList.remove("displaynone");
+    setTimeout(function() {
+      // 穿梭完了 显示场景
+      if (musicClasslist.contains("on")) {
+        audio4.pause();
+        audio1.play();
+      }
+      musicDom.setAttribute("curplay", "audio1");
 
-    }, 4000);
+      daeDom.classList.remove("displaynone");
+      coverDom.classList.add("displaynone");
+
+      setTimeout(function(){
+        animate();
+      },300);
 
 
-  }, 2640);
+      setTimeout(function() {
+        document.querySelector(".find-xinhaoshowtip").classList.add("hide");
+        document.querySelector(".s-tips").classList.remove("displaynone");
+      }, 2500);
+
+    }, 2500); // 动画时间
+
+  }, 300);
+
 
 });
 
 
-
-    animate();
-
+// animate();

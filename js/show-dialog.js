@@ -2,7 +2,8 @@ import {mapping, nameArray} from './data.js'
 
 
 
-
+const dialogPopWrap = document.querySelector(".dialog-pop-wrap");
+const othersDom = document.querySelector(".dialog-pop-wrap .others")
 
 
 function dialogCreateHtml(name){
@@ -10,31 +11,51 @@ function dialogCreateHtml(name){
   let dialog = mapping[name].dialog;
   let dialoghtml = "";
   for(let i in dialog){
+
     if(!(i%2)){
       //0 如果是偶数
+      var nobac = "";
+      var imgAlone = dialog[i].match(/^<.*>$/g);
+      if(imgAlone){
+        nobac = "nobac"
+      }
       let animateOrNot = "";
       if(i==0){ 
         animateOrNot = "animation";
       }
       dialoghtml += `<li class="wxr ${animateOrNot}" order="${i}" >
         <span class="head"></span>
-        <span class="kuang">${dialog[i]}</span>
+        <span class="kuang ${nobac}">${dialog[i]}</span>
       </li>`;
     
     }else{
       // 如果是奇数
       dialoghtml += `<li class="fast" order="${i}" >
-        <span class="kuang" realtext="${dialog[i]}"><i>点击继续</i></span>
-        <span class="head"></span>
+          <span class="kuang " realtext="${dialog[i]}"><i>点击继续</i></span>
+          <span class="head"></span>
       </li>`
     }
   }
-  console.log(dialoghtml);
+  // console.log(dialoghtml);
   document.querySelector(".speak-wrap").innerHTML = dialoghtml;
+  dialogPopWrap.classList.add(mapping[name].classname);
+
+  // title 图片
+  let clist = document.querySelector(".dialog-pop-wrap .img").classList;
+  for (var i = 0; i < clist.length; i++) {
+    if (clist[i] != "img") {
+      clist.remove(clist[i]);
+    }
+  }
+  clist.add(mapping[name].pic);
+  
 }
 
 
 
+var wrapHtml = document.querySelector("html").getAttribute("style");
+var baseREM = wrapHtml.split(":")
+var rem = parseFloat(baseREM[1])
 
 
 
@@ -42,15 +63,12 @@ function dialogShowAnimate() {
   // create html
 
 
-
-
-
   var liLength = document.querySelectorAll(".speak-wrap li").length;
   var scrollWrapDom = document.querySelector(".speak-wrap");
 
-  document.querySelector(".dialog-pop-wrap").classList.remove("displaynone");
+  dialogPopWrap.classList.remove("hide");
 
-  console.log(liLength);
+  // console.log(liLength);
 
 
   startAnimation();
@@ -64,21 +82,29 @@ function dialogShowAnimate() {
       }, 1000);
     };
 
-    scrollWrapDom.addEventListener("click", function() {
+    scrollWrapDom.addEventListener("touchstart", function() {
       event.stopPropagation();
       event.preventDefault();
       var curNode = event.target;
+      var parentNode;
       if (curNode.tagName != "I" && !curNode.hasAttribute("realtext")) return;
-      // click I
-      var parentNode = curNode.parentElement;
+      
       if (curNode.hasAttribute("realtext")){ 
         // cick span
-        parentNode = curNode;
+        parentNode = curNode; // parentNode = <span>
+      }else{
+        // click I
+        parentNode = curNode.parentElement;
       }
       var curOrder = parentNode.parentElement.getAttribute("order");
       var nextOrder = parseInt(curOrder) + 1;
       var thirdOrder = nextOrder + 1;
+      
       // 填充文字
+      var imgAlone = parentNode.getAttribute("realtext").match(/^<.*>$/g);
+      if(imgAlone){
+        parentNode.classList.add("nobac");
+      }
       parentNode.innerHTML = parentNode.getAttribute("realtext");
       // 最后一个 要显示分享页
       ifLastShow(curOrder);
@@ -98,10 +124,11 @@ function dialogShowAnimate() {
       }
 
       function ifLastShow(order){
-        if(order == liLength-1){
+        var lastClick = document.querySelector('[order="'+order+'"]').innerHTML.indexOf("点击继续")
+        if(order == liLength-1 && lastClick == -1){
           setTimeout(function(){
             showShareView();
-          }, 1500)
+          }, 3000)
         }
       }
       function ifHasNext(order){
@@ -121,14 +148,28 @@ function dialogShowAnimate() {
     });
     
     function showShareView(){
+      othersDom.classList.add("hide");
       document.querySelector(".end-wrap").classList.remove("hide");
-      document.querySelector(".dialog-pop-wrap").classList.add("hide");
+      document.querySelector(".end-wrap .tips").classList.remove("hide");
+      setTimeout(function(){
+        document.querySelector(".last-page").classList.remove("hide");
+      }, 1500);
+
     }
 
     function scrollToEdge(order) {
-      // scrollWrapDom.scrollTop 
-      var scrollToH = (order - 2) * document.querySelector(".speak-wrap li").clientHeight;
-      scrollTo(scrollWrapDom, scrollToH, 300);
+      var base = 95;
+      if((document.querySelector(".dialog-pop-wrap").classList+"").indexOf("shinv") != -1){
+        base = 150;
+      }
+      if((document.querySelector(".dialog-pop-wrap").classList+"").indexOf("huoxing") != -1){
+        base = 190;
+      }
+      var scrollToH = (order - 2) * document.querySelector('[order="' + order + '"]').clientHeight + base;
+      
+      var scrollRem = scrollToH/100 * rem;
+
+      scrollTo(scrollWrapDom, scrollToH, 200);
     }
 
     function scrollTo(element, to, duration) {

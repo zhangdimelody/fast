@@ -6,23 +6,26 @@ p="http://img5.cache.netease.com/utf8/3g/share/qzonejsbridge.js",e;"function"===
 
 //(
 module.exports = function() {
-    console.log("dd3share")
+    // console.log("dd3share")
 
     var shareUrl;
+
+
+
     var data = {
       "title": "FAST：寻找ET",
       "body": "我（输入名字、读取微信名字）用FAST找到了一只超级ET！",
-      "imgurl": "http://img1.cache.netease.com/utf8/3g/fast/fast-share.jpg"
+      "imgurl": "http://img1.cache.netease.com/utf8/3g/fast/fast-share1.jpg"
     };
       data.body = data.body.replace(/<.*?>/g, "").replace(/(^\s*)/g, "").substr(0, 30) || data.title;
     
-    window.setShareData = function(title, body, imgurl) {
-      window.setShareData = null;
-      data.title = title;
-      body = body || title;
-      data.body = body.replace(/<.*?>/g, "").replace(/(^\s*)/g, "").substr(0, 30) || data.title;
-      data.imgurl = imgurl;
-    };
+    // window.setShareData = function(title, body, imgurl) {
+    //   window.setShareData = null;
+    //   data.title = title;
+    //   body = body || title;
+    //   data.body = body.replace(/<.*?>/g, "").replace(/(^\s*)/g, "").substr(0, 30) || data.title;
+    //   data.imgurl = imgurl;
+    // };
     
       // var data = {
       //   "title": "网易VR故事|“不要惊慌，没有辐射！”",
@@ -30,18 +33,18 @@ module.exports = function() {
       //   "imgurl": "http://img1.cache.netease.com/utf8/3g/fast/fast-share.jpg"
       // };
       // var imgurl, shareUrl;
-      shareUrl = location.href;
-      
+      shareUrl =  NTESAntAnalysis.getShareLink();
+      // console.log(shareUrl);
+
       document.addEventListener('WeixinJSBridgeReady', function() {
-        // wx.ready(function() {
             document.querySelector(".audio1").play();
-            // document.querySelector(".audio1").pause();
+            document.querySelector(".audio1").pause();
 
             document.querySelector(".audio2").play();
             document.querySelector(".audio2").pause();
 
             document.querySelector(".audio3").play();
-            document.querySelector(".audio3").pause();
+            // document.querySelector(".audio3").pause();
             
             document.querySelector(".audio4").play();
             document.querySelector(".audio4").pause();
@@ -54,35 +57,67 @@ module.exports = function() {
         // });
 
         window.WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+          var bodyText;
+          if(!window.shareInfoObj || !window.shareInfoObj.counts || !window.shareInfoObj.name){
+            data.title = `不要回复！不要回复！不要回复!`
+            bodyText = `这里有一封来自外星人的短消息`
+          }else{
+            data.title = `我用${window.shareInfoObj.counts}次，就在${window.shareInfoObj.name}找到了一只超级ET！`
+            // `我用${window.shareInfoObj.counts}次邂逅了一只超级ET，快来看看你要找几次？`
+            bodyText = `你也来试试吧！`
+            // `看，他在${window.shareInfoObj.name}上！` 
+          }
           return window.WeixinJSBridge.invoke('sendAppMessage', {
             "img_url": data.imgurl || imgurl,
             "link": shareUrl,
-            "desc": data.body,
+            "desc": bodyText,
             "title": data.title
           }, function() {
-            // var spss, spsw;
-            // spss = NTES.localParam().search['s'] || 'newsapp';
-            // spsw = NTES.localParam().search['w'] || 1;
-            // if (typeof neteaseTracker === "function") {
-            //   neteaseTracker(false, 'http://sps.163.com/func/?func=sharedone&spst=0&docid=' + docid + '&spsw=' + spsw + '&spss=' + spss + '&spsf=wx', '', 'sps');
-            // }
+            
+            if(res.err_msg != "send_app_msg:confirm") return; 
+
+            NTESAntAnalysis.sendData({
+              projectid: "NTM-Z6VEYMWN-1",  // 项目id 必填项 在传播信息统计平台上生成
+              val_nm: "share",       // 当前行为时间大类名称 【click/share/download/open/pageview etc】
+              val_act: "share:appmessage",      // 子类用户行为名称 【open_smartBar】
+              info: {                   //  扩展字段
+                modelid: "fast"
+              }          //  对应modelid 的项目名称 一般推荐用 document.title
+            });
+
           });
         });
-        
-        
         return window.WeixinJSBridge.on('menu:share:timeline', function(argv) {
+          var bodyText;
+          if(!window.shareInfoObj || !window.shareInfoObj.counts || !window.shareInfoObj.name){
+            data.title = `不要回复！不要回复！不要回复!`
+            bodyText = `这里有一封来自外星人的短消息`
+          }else{
+            data.title = `我用${window.shareInfoObj.counts}次，就在${window.shareInfoObj.name}找到了一只超级ET！`
+            // `我用${window.shareInfoObj.counts}次邂逅了一只超级ET，快来看看你要找几次？`
+            bodyText = `你也来试试吧！`
+            // `看，他在${window.shareInfoObj.name}上！` 
+          }
           return window.WeixinJSBridge.invoke('shareTimeline', {
             "img_url": data.imgurl || imgurl,
             "img_width": "200",
             "img_height": "200",
             "link": shareUrl,
-            "desc": data.body,
+            "desc": bodyText,
             "title": data.title
           }, function() {
-            // var spss, spsw;
-            // spss = NTES.localParam().search['s'] || 'newsapp';
-            // spsw = NTES.localParam().search['w'] || 1;
-            // return typeof neteaseTracker === "function" ? neteaseTracker(false, 'http://sps.163.com/func/?func=sharedone&spst=0&docid=' + docid + '&spsw=' + spsw + '&spss=' + spss + '&spsf=wx', '', 'sps') : void 0;
+
+            if(res.err_msg != "share_timeline:ok") return;
+
+            NTESAntAnalysis.sendData({
+              projectid: "NTM-Z6VEYMWN-1",  // 项目id 必填项 在传播信息统计平台上生成
+              val_nm: "share",       // 当前行为时间大类名称 【click/share/download/open/pageview etc】
+              val_act: "share:timeline",      // 子类用户行为名称 【open_smartBar】
+              info: {                   //  扩展字段
+                modelid: "fast"
+              }          //  对应modelid 的项目名称 一般推荐用 document.title
+            });
+
           });
         });
 

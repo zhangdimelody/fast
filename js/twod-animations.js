@@ -75,7 +75,7 @@ module.exports = function() {
   // const audio1Dom = document.querySelector(".audio1");
   // const audio2Dom = document.querySelector(".audio2");
 
-  document.querySelector(".animate-control").addEventListener("click", function(){
+  document.querySelector(".animate-control").addEventListener("touchstart", function(){
     // startBtnDom.classList.add("displaynone");
     
     animateFunc();
@@ -96,17 +96,17 @@ module.exports = function() {
         titWrapDom.classList.add("displaynone");
         execAnimation(".info1");
         curNode.setAttribute("cur-animate", "info1");
-        st = setTimeout(function(){
-          animateFunc();
-        }, 6000);
+        // st = setTimeout(function(){
+        //   animateFunc();
+        // }, 6000);
         break;
       case "info1":
         document.querySelector(".info1").classList.add("displaynone");
         execAnimation(".info2");
         curNode.setAttribute("cur-animate", "info2");
-        st = setTimeout(function(){
-          animateFunc();
-        }, 6000);
+        // st = setTimeout(function(){
+        //   animateFunc();
+        // }, 6000);
         break;
       case "info2":
         document.querySelector(".info2").classList.add("displaynone");
@@ -114,12 +114,13 @@ module.exports = function() {
         
         execAnimation(".info3");
         curNode.setAttribute("cur-animate", "info3");
-        st = setTimeout(function(){
-          animateFunc();
-        }, 6000);
+        curNode.classList.add("displaynone");
+        
+        // st = setTimeout(function(){
+        //   animateFunc();
+        // }, 6000);
         break;
       case "info3":
-        curNode.classList.add("displaynone");
         break;
     }
   };

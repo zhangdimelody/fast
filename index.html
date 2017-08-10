@@ -8,13 +8,13 @@
   <script type="text/javascript" src="./dist/adjust-screen.js"></script>
 </head>
 <body>
-  <div class="loading displaynone">
+  <div class="loading ">
     <div class="loading-guo"></div>
     <div class="loading-text"><span>0</span>%</div>
   </div>
 <!-- cover start -->
-  <div class="animate-control displaynone" cur-animate="info0"></div>
-  <div class="music on " curplay="audio1"></div>
+  <div class="animate-control " cur-animate="info0"></div>
+  <div class="music on " curplay="audio3"></div>
   <div class="big-wrap displaynone">
     <div class="chuansuo gif"></div>
     <div class="cover-bac">
@@ -78,7 +78,7 @@
   </div>
 <!-- cover end -->
 <!-- 3d start -->
-  <div class="threed-wrap ">
+  <div class="threed-wrap displaynone">
     <div class="fast-wrapper"></div> 
     <!-- 1/2 -->
     <div class="info-page">
@@ -86,21 +86,24 @@
       <div class="fenge"></div>
       <div class="text">
       </div>
-      <div class="tips">点击屏幕返回</div>
+      <div class="tips"></div>
     </div>
     <!-- lucky dog -->
-    <div class="dialog-pop-wrap displaynone">
-      <div class="feng"></div>
-      <ul class="speak-wrap">
-        
-      </ul>
+      <div class="szlxy displaynone"></div>
+    <div class="dialog-pop-wrap hide">
+      <div class="w-wxr"></div>
+      <div class="others">
+        <div class="img mars"></div>
+        <div class="feng"></div>
+        <ul class="speak-wrap">
+        </ul>
+      </div>
 
     </div>
     <div class="end-wrap hide">
       <!-- <div class="waixingren"></div>-->
-      <div class="tips">想了解更多ET和FAST的对话，来《了不起的中国制造》继续探索吧</div> 
-    
-      <div class="last-page">
+      <div class="tips hide">想知道ET和FAST都聊了啥，来《了不起的中国制造》继续探索吧！</div> 
+      <div class="last-page hide">
         <div class="btn-wrap">
           <span class="continue"></span>
           <span class="share"></span>
@@ -109,11 +112,12 @@
       </div>
     </div>
     <!-- 1/2 over -->
-    <div class="guo displaynone">
+    <!-- <div class="guo displaynone">
       <div class="guotip hide"></div>
-    </div>
+    </div> -->
     <div class="xinhaoshowtip hide"></div>
-    <div class="find-xinhaoshowtip"></div>
+    <div class="find-xinhaoshowtip "></div>       <!-- zheli change -->
+    <div class="find-luckydog hide"></div>
     <div class="s-tips displaynone">点击星球，寻找ET～</div>
 
     <!-- <div class="end-wrap hide">
@@ -140,17 +144,28 @@
   </div>
   
 <!-- 3d end -->
-<audio class="audio1" src="./object/c1.mp3" loop autoplay></audio>
+<audio class="audio1" src="./object/c1.mp3" loop ></audio>
 <audio class="audio2" src="./object/c2.mp3" loop ></audio>
-<audio class="audio3" src="./object/c3.mp3" loop ></audio> 
+<audio class="audio3" src="./object/c3.mp3" loop autoplay></audio> 
 <audio class="audio4" src="./object/c4.mp3"  ></audio> 
 <audio class="audio5" src="./object/c5.mp3" loop ></audio> 
 <audio class="audio6" src="./object/c-ka.mp3"  ></audio> 
-<!-- c1舒缓，c2 激烈，c3 打字， c4 穿梭 , c5 信号异常 -->
+<!-- c1舒缓，c2 激烈，c3 封面， c4 穿梭 , c5 信号异常 -->
 </body>
-  <!-- // <script type="text/javascript" src="http://10.235.4.96:8700/threejs/build/three.min.js"></script> -->
+  <script type="text/javascript" src="http://img1.cache.netease.com/utf8/3g/util/antanalysis.min.js"></script>
+
   <script type="text/javascript" src="./dist/bundle.js" ></script>
-  <!-- // <script src="https://jsconsole.com/js/remote.js?091462db-02f0-437c-a77e-32445d1e0d35"></script> -->
+  
+  <script type="text/javascript">
+    NTESAntAnalysis.sendData({
+      projectid: "NTM-Z6VEYMWN-1",  // 项目id 必填项 在传播信息统计平台上生成
+      val_nm: "pageview",       // 当前行为时间大类名称 【click/share/download/open/pageview etc】
+      val_act: "pageview",      // 子类用户行为名称 【open_smartBar】
+      info: {                   //  扩展字段
+        modelid: "fast"
+      }
+    });
+  </script>
 </html>
 
 

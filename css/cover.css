@@ -28,41 +28,47 @@
   line-height: 0.5rem;
   text-align: justify;
 }
+.dialog-pop-wrap .img{
+  margin: 0  auto;
+  width: 3.96rem;
+  height: 1rem;
+  background-size: contain !important;
+}
 .info-page .img{
   margin: 0.6rem  auto;
   width: 3.96rem;
   height: 1rem;
   background-size: contain !important;
 }
-.info-page .mars{
+.dialog-pop-wrap .mars, .info-page .mars{
   background: url(../images/name/mars.png) no-repeat;
 }
-.info-page .tuxing{
+.dialog-pop-wrap .tuxing, .info-page .tuxing{
   background: url(../images/name/tuxing.png) no-repeat;
   background-position: 0.22rem 0;
 }
-.info-page .haiwang{
+.dialog-pop-wrap .haiwang, .info-page .haiwang{
   background: url(../images/name/haiwang.png) no-repeat;
 }
-.info-page .halei{
+.dialog-pop-wrap .halei, .info-page .halei{
   background: url(../images/name/halei.png) no-repeat;
 }
-.info-page .kaipule{
+.dialog-pop-wrap .kaipule, .info-page .kaipule{
   background: url(../images/name/kaipule.png) no-repeat;
 }
-.info-page .mingwang{
+.dialog-pop-wrap .mingwang, .info-page .mingwang{
   background: url(../images/name/mingwang.png) no-repeat;
 }
-.info-page .shizi{
+.dialog-pop-wrap .shizi, .info-page .shizi{
   background: url(../images/name/shizi.png) no-repeat;
 }
-.info-page .waitress{
+.dialog-pop-wrap .waitress, .info-page .waitress{
   background: url(../images/name/waitress.png) no-repeat;
 }
-.info-page .lion{
+.dialog-pop-wrap .lion, .info-page .lion{
   background: url(../images/name/lion.png) no-repeat;
 }
-.info-page .bigbear{
+.dialog-pop-wrap .bigbear, .info-page .bigbear{
   background: url(../images/name/bigbear.png) no-repeat;
 }
 .info-page .fenge{
@@ -73,11 +79,14 @@
   margin-bottom: 0.2rem;
 }
 .info-page .tips{
-  font-size: 0.22rem;
-  text-align: center;
-  color: #78787f;
-  margin-top:0.9rem;
-  margin-bottom: 0.65rem;
+  background: url(../images/click-back-tip.png) no-repeat;
+    width: 2.05rem;
+    height: 0.26rem;
+    background-size: contain;
+    margin: 0 auto;
+    margin-top: 1.08rem;
+    margin-bottom: .75rem;
+    /*opacity: 0.4;*/
 }
 .fast-wrapper{
   background-color: #000;
@@ -565,7 +574,7 @@ body{
   
   z-index: 111;
 
-  background-image: url('../images/chuansuo4.png');
+  background-image: url('http://img1.cache.netease.com/utf8/3g/fast/chuansuo4.png');
   background-size: 15rem 160.08rem;
   background-color: #06091b;
   
@@ -593,6 +602,32 @@ body{
   -webkit-animation-direction:normal, alternate;
           animation-direction:normal, alternate;
   /*animation: chuansuogif 1.08s steps(1) forwards;*/
+}
+
+@-webkit-keyframes chuansuogif {
+  0% { background-position: 0 0rem; }
+  4.55% { background-position: -7.50rem 0rem; }
+  9.09% { background-position: 0 -13.34rem; }
+  13.64% { background-position: -7.50rem -13.34rem; }
+  18.18% { background-position: 0 -26.68rem; }
+  22.73% { background-position: -7.50rem -26.68rem; }
+  27.27% { background-position: 0 -40.02rem; }
+  31.82% { background-position: -7.50rem -40.02rem; }
+  36.36% { background-position: 0 -53.36rem; }
+  40.91% { background-position: -7.50rem -53.36rem; }
+  45.45% { background-position: 0 -66.70rem; }
+  50.00% { background-position: -7.50rem -66.70rem; }
+  54.55% { background-position: 0 -80.04rem; }
+  59.09% { background-position: -7.50rem -80.04rem; }
+  63.64% { background-position: 0 -93.38rem; }
+  68.18% { background-position: -7.50rem -93.38rem; }
+  72.73% { background-position: 0 -106.72rem; }
+  77.27% { background-position: -7.50rem -106.72rem; }
+  81.82% { background-position: 0 -120.06rem; }
+  86.36% { background-position: -7.50rem -120.06rem; }
+  90.91% { background-position: 0 -133.40rem; }
+  95.45% { background-position: -7.50rem -133.40rem; }
+  100.00% { background-position: 0 -146.74rem; }
 }
 
 @keyframes chuansuogif {
@@ -687,7 +722,7 @@ body{
   background-size: contain;
   margin: 0 auto;
   /*transform: translateY(-50%);*/
-  margin-top: 45%;
+  margin-top: 50%;
   -webkit-animation: rotateanimate 1s infinite;
           animation: rotateanimate 1s infinite;
 }
@@ -734,8 +769,7 @@ body{
   position: absolute;
   bottom: 0.52rem;
   width: 100%;
-  -webkit-animation: showanimate 0.5s forwards;
-          animation: showanimate 0.5s forwards;
+  
 }
 .end-wrap .end-logo{
   width: 3.88rem;
@@ -744,6 +778,10 @@ body{
   background-size: contain;
   margin: 0 auto;
 
+}
+.end-wrap .last-page{
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
 }
 .continue{
   display: inline-block;
@@ -1031,7 +1069,7 @@ body{
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 121;
 }
 
@@ -1047,16 +1085,19 @@ body{
 
 .end-wrap .tips{
   background: url(../images/info-bac2.png) no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
     -webkit-animation: showanimate .5s forwards;
   animation: showanimate .5s forwards;
   font-size: .28rem;
   line-height: .48rem;
   color: #fff;
-  padding: 1rem 1.2rem .8rem;
+  padding: 0.8rem 1.2rem .8rem;
   /*width: 5.36rem;*/
   text-align: justify;
   margin-bottom: 0.94rem;
+
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
 }
 .info-wrap span.info3{
   text-align: center !important;
@@ -1064,7 +1105,7 @@ body{
 
 .s-tips{
   position: absolute;
-  bottom: 0.6rem;
+  bottom: 0.7rem;
   color: #78787f;
   font-size: 0.24rem;
   text-align: center;
@@ -1093,7 +1134,8 @@ body{
   position: absolute;
   bottom: 0.8rem;
   margin: 0 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   color: #fff;
   text-align: center;
   font-size: 0.32rem;
@@ -1102,12 +1144,46 @@ body{
   position: absolute;
   bottom: 0.5rem;
   margin: 0 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-image: url('../images/circle.png');
   background-size: 20rem 2rem;
   width: 1rem;
   height: 1rem;
-  animation: circleanimate 1.71s steps(1) infinite;
+  -webkit-animation: circleanimate 1.71s steps(1) infinite;
+          animation: circleanimate 1.71s steps(1) infinite;
+}
+@-webkit-keyframes circleanimate {
+  0% { background-position: 0 0; }
+  3.45% { background-position: -1rem 0; }
+  6.90% { background-position: -2rem 0; }
+  10.34% { background-position: -3rem 0; }
+  13.79% { background-position: -4rem 0; }
+  17.24% { background-position: -5rem 0; }
+  20.69% { background-position: -6rem 0; }
+  24.14% { background-position: -7rem 0; }
+  27.59% { background-position: -8rem 0; }
+  31.03% { background-position: -9rem 0; }
+  34.48% { background-position: -10rem 0; }
+  37.93% { background-position: -11rem 0; }
+  41.38% { background-position: -12rem 0; }
+  44.83% { background-position: -13rem 0; }
+  48.28% { background-position: -14rem 0; }
+  51.72% { background-position: -15rem 0; }
+  55.17% { background-position: -16rem 0; }
+  58.62% { background-position: -17rem 0; }
+  62.07% { background-position: -18rem 0; }
+  65.52% { background-position: -19rem 0; }
+  68.97% { background-position: 0 -1rem; }
+  72.41% { background-position: -1rem -1rem; }
+  75.86% { background-position: -2rem -1rem; }
+  79.31% { background-position: -3rem -1rem; }
+  82.76% { background-position: -4rem -1rem; }
+  86.21% { background-position: -5rem -1rem; }
+  89.66% { background-position: -6rem -1rem; }
+  93.10% { background-position: -7rem -1rem; }
+  96.55% { background-position: -8rem -1rem; }
+  100.00% { background-position: -9rem -1rem; }
 }
 @keyframes circleanimate {
   0% { background-position: 0 0; }
@@ -1146,6 +1222,8 @@ body{
   height: 100%;
   position: fixed;
   z-index: 119;
+  tap-highlight-color: transparent; 
+  touch-callout: none;
 }
 
 .dialog-wrap {
@@ -1154,21 +1232,36 @@ body{
   width: 100%;
   height: 3.18rem;
   background: url(../images/info-bac2.png) no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 90%;
   /*opacity: 0;*/
   -webkit-transform-origin: left top;
           transform-origin: left top;
 }
 .dialog-wrap.animate{
-  animation: infoanimation 0.52s forwards;
+  -webkit-animation: infoanimation 0.52s forwards;
+          animation: infoanimation 0.52s forwards;
 }
-@keyframes infoanimation{
+@-webkit-keyframes infoanimation{
   0%{
-    transform: scale(0);
+    -webkit-transform: scale(0);
+            transform: scale(0);
     opacity: 0.4;
   }
   100%{
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes infoanimation{
+  0%{
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.4;
+  }
+  100%{
+    -webkit-transform: scale(1);
+            transform: scale(1);
     opacity: 1;
   }
 }
@@ -1182,10 +1275,10 @@ body{
   display: inline-block;
 }
 .dialog-wrap.info2{
-  background-size: 100% 80% !important;
+  background-size: 100% 61% !important;
 }
 .dialog-wrap.info3{
-  background-size: 100% 62% !important;
+  background-size: 100% 1.7rem !important;
 }
 .dialog-wrap.info3 span{
   margin-left: 2.3rem;
@@ -1193,74 +1286,115 @@ body{
 
 .dialog-pop-wrap{
   position: absolute;
-  bottom: 0.5rem;
-  height: 5.36rem;
+  bottom: 0rem;
+  /*height: 6.36rem;*/
   width: 100%;
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
 }
 .dialog-pop-wrap .feng{
   width: 100%;
   height: 0.08rem;
   background: url(../images/fengfeng.png) no-repeat;
   background-size: 100% 100%;
+  margin-top: 0.1rem;
 }
 .dialog-pop-wrap .speak-wrap{
-  height: 5.1rem;
+  height: 4.1rem;
   margin: 0 0.57rem;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  padding-top: 0.5rem;
+  padding-bottom: 0.42rem;
+  clear: both;
 }
 .speak-wrap .wxr .head{
   display: inline-block;
-  width: 1.27rem;
-  height: 1.28rem;
-  background: url(../images/head-wxr.png) no-repeat;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url(../images/head.png) no-repeat;
   background-size: cover;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
+  margin-right: -0.2rem;
+
+  /*position: absolute;
+  top: -.2rem;*/
 }
 .speak-wrap .wxr .kuang{
   display: inline-block;
-  font-size: 0.26rem;
+  font-size: 0.28rem;
   color: #78e0e1;
   background: url(../images/kuang-wxr.png) no-repeat;
   background-size: 100% 100%;
-  padding: 0.3rem 0.3rem 0.3rem 0.6rem;
-  max-width: 3.3rem;
+  padding: .3rem .34rem .3rem .54rem;
+  max-width: 3.6rem;
 
-  position: absolute;
+  margin-left: 1.26rem;
+  vertical-align: top;
+  
+  text-align: justify;
+  /*position: absolute;
   top: 0.36rem;
-  left: 1.32rem;
+  left: 1.32rem;*/
+}
+.speak-wrap .wxr{
+  /*text-align: right;*/
+  float: left;
 }
 .speak-wrap .fast{
-  text-align: right;
+  /*text-align: right;*/
+  float: right;
+}
+.speak-wrap .head{
+  position: absolute;
+  top: -.2rem;
 }
 .speak-wrap .fast .head{
+  right: 0;
   display: inline-block;
   width: 1.26rem;
   height: 1.28rem;
   background: url(../images/head-fast.png) no-repeat;
   background-size: cover;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
+  /*margin-left: -0.2rem;*/
+    
 }
 .speak-wrap .fast .kuang{
   display: inline-block;
-  font-size: 0.26rem;
+  font-size: 0.28rem;
   color: #4faad6;
   background: url(../images/kuang-fast-c.png) no-repeat;
   background-size: 100% 100%;
-  padding: 0.3rem 0.6rem 0.3rem 0.4rem;
-  max-width: 3.3rem;
+  padding: 0.3rem 0.48rem 0.3rem 0.4rem;
+  max-width: 3.6rem;
   text-align: left;
   
-  position: absolute;
+  margin-right: 1.26rem;
+  vertical-align: top;
+  /*position: absolute;
   right: 1.32rem;
-  top: 0.4rem;
+  top: 0.4rem;*/
+  text-align: justify;
 }
 
 .speak-wrap .fast i{
   padding: 0 0.4rem;
   font-style: normal;
-  animation: textanimate 1s infinite;
+  -webkit-animation: textanimate 1s infinite;
+          animation: textanimate 1s infinite;
+}
+@-webkit-keyframes textanimate{
+  0%{
+    text-shadow: 0px 0px 20px #4faad6;
+  }
+  50%{
+    text-shadow: 0px 0px 0px #4faad6;
+  }
+  100%{
+    text-shadow: 0px 0px 20px #4faad6;
+  }
 }
 @keyframes textanimate{
   0%{
@@ -1279,34 +1413,269 @@ body{
 }
 
 .speak-wrap li{
-  position: relative;
+  /*position: relative;*/
   opacity: 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  /*width: 100%;*/
+  margin-bottom: 0.4rem;
 }
 .speak-wrap li.animation{
-  animation: dialoganimation 0.5s forwards;
-  margin-bottom: 0.1rem;
+  -webkit-animation: dialoganimation 0.5s forwards;
+          animation: dialoganimation 0.5s forwards;
+  /*margin-bottom: 0.1rem;*/
+}
+@-webkit-keyframes dialoganimation{
+  from{
+    opacity: 0;
+    -webkit-transform: translateY(0.5rem);
+            transform: translateY(0.5rem);
+  }
+  to{
+    opacity: 1;
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
 }
 @keyframes dialoganimation{
   from{
     opacity: 0;
-    transform: translateY(0.5rem);
+    -webkit-transform: translateY(0.5rem);
+            transform: translateY(0.5rem);
   }
   to{
     opacity: 1;
-    transform: translateY(0rem);
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+}
+
+.dialog-pop-wrap .w-wxr{
+  width: 2.71rem;
+  height: 2.81rem;
+  background-size: contain ;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 7.2rem;
+  right: .4rem;
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
+}
+.dialog-pop-wrap.tuxing .w-wxr{
+  background-image: url(../images/w-tu.png) ;
+}
+.dialog-pop-wrap.haiwang .w-wxr{
+  background-image: url(../images/w-haiwang.png) ;
+  -webkit-animation: wxrtopdownmove 2s infinite;
+          animation: wxrtopdownmove 2s infinite;
+  right: 0.2rem;
+  bottom: 7.8rem;
+}
+.dialog-pop-wrap.bear .w-wxr{
+  background-image: url(../images/w-bear.png) ;
+  height: 3rem;
+  right: 0;
+}
+.dialog-pop-wrap.shinv .w-wxr{
+  background-image: url(../images/w-chunv.png) ;
+      right: 0;
+    bottom: 6.8rem;
+}
+.dialog-pop-wrap.halei .w-wxr{
+  background-image: url(../images/w-halei.png) ;
+  -webkit-animation: wxrtopdownmove 2s infinite;
+          animation: wxrtopdownmove 2s infinite;
+}
+.dialog-pop-wrap.tenzi .w-wxr{
+  background-image: url(../images/w-nanshi.png) ;
+}
+.dialog-pop-wrap.huoxing .w-wxr{
+  background-image: url(../images/w-huo.png) ;
+  -webkit-animation: wxrtopdownmove 2s infinite;
+          animation: wxrtopdownmove 2s infinite;
+}
+.dialog-pop-wrap.lion .w-wxr{
+  background-image: url(../images/w-lion.png) ;
+      bottom: 6.6rem;
+    right: -0.2rem;
+}
+.dialog-pop-wrap.kaipule .w-wxr{
+  background-image: url(../images/w-kpl.png) ;
+}
+.dialog-pop-wrap.mingwang .w-wxr{
+  background-image: url(../images/w-mingwang.png) ;
+  right: 1.7rem ;
+    bottom: 8.4rem;
+}
+
+.dialog-pop-wrap.shinv .wxr .head{
+  background-image: url(../images/head-chunv.png) ;
+}
+.dialog-pop-wrap.haiwang .wxr .head{
+  background-image: url(../images/head-haiwang.png) ;
+}
+.dialog-pop-wrap.huoxing .wxr .head{
+  background-image: url(../images/head-huo.png) ;
+}
+.dialog-pop-wrap.kaipule .wxr .head{
+  background-image: url(../images/head-kpl.png) ;
+}
+.dialog-pop-wrap.mingwang .wxr .head{
+  background-image: url(../images/head-mingwang.png) ;
+}
+
+.speak-wrap li img.text-emoj{
+  width: 0.6rem;
+  vertical-align: middle;
+  margin: 0 0.1rem;
+}
+img.imgalone{
+  width: 1.6rem;
+  margin: -0.2rem -0.34rem;
+}
+
+.kuang.nobac{
+  background: none !important;
+}
+
+.text-emoj.bigger{
+  width: 1.2rem !important;
+}
+
+
+@-webkit-keyframes wxrtopdownmove{
+  0%{
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+  50%{
+    -webkit-transform: translateY(0.15rem);
+            transform: translateY(0.15rem);
+  }
+  100%{
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
   }
 }
 
 
+@keyframes wxrtopdownmove{
+  0%{
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+  50%{
+    -webkit-transform: translateY(0.15rem);
+            transform: translateY(0.15rem);
+  }
+  100%{
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+}
 
-
-
-
-
-
-
-
-
+.szlxy {
+  background-image: url('../images/szlxy.png');
+  width: 7.50rem;
+  height: 12.06rem;
+  background-size: 15rem 217.08rem;
+  /*transform: translate(-50%, -50%) scale(1,1);*/
+  -webkit-animation: szlxy 2.06s steps(1) infinite;
+          animation: szlxy 2.06s steps(1) infinite;
+  position: absolute;
+}
+@-webkit-keyframes szlxy {
+  0% { background-position: 0  0; }
+  2.86% { background-position: -7.5rem 0; }
+  5.71% { background-position: 0  -12.06rem; }
+  8.57% { background-position: -7.5rem -12.06rem; }
+  11.43% { background-position: 0  -24.12rem; }
+  14.29% { background-position: -7.5rem -24.12rem; }
+  17.14% { background-position: 0  -36.18rem; }
+  20.00% { background-position: -7.5rem -36.18rem; }
+  22.86% { background-position: 0  -48.24rem; }
+  25.71% { background-position: -7.5rem -48.24rem; }
+  28.57% { background-position: 0  -60.30rem; }
+  31.43% { background-position: -7.5rem -60.30rem; }
+  34.29% { background-position: 0  -72.36rem; }
+  37.14% { background-position: -7.5rem -72.36rem; }
+  40.00% { background-position: 0  -84.42rem; }
+  42.86% { background-position: -7.5rem -84.42rem; }
+  45.71% { background-position: 0  -96.48rem; }
+  48.57% { background-position: -7.5rem -96.48rem; }
+  51.43% { background-position: 0  -108.54rem; }
+  54.29% { background-position: -7.5rem -108.54rem; }
+  57.14% { background-position: 0  -120.60rem; }
+  60.00% { background-position: -7.5rem -120.60rem; }
+  62.86% { background-position: 0  -132.66rem; }
+  65.71% { background-position: -7.5rem -132.66rem; }
+  68.57% { background-position: 0  -144.72rem; }
+  71.43% { background-position: -7.5rem -144.72rem; }
+  74.29% { background-position: 0  -156.78rem; }
+  77.14% { background-position: -7.5rem -156.78rem; }
+  80.00% { background-position: 0  -168.84rem; }
+  82.86% { background-position: -7.5rem -168.84rem; }
+  85.71% { background-position: 0  -180.90rem; }
+  88.57% { background-position: -7.5rem -180.90rem; }
+  91.43% { background-position: 0  -192.96rem; }
+  94.29% { background-position: -7.5rem -192.96rem; }
+  97.14% { background-position: 0  -205.02rem; }
+  100.00% { background-position: -7.5rem -205.02rem; }
+}
+@keyframes szlxy {
+  0% { background-position: 0  0; }
+  2.86% { background-position: -7.5rem 0; }
+  5.71% { background-position: 0  -12.06rem; }
+  8.57% { background-position: -7.5rem -12.06rem; }
+  11.43% { background-position: 0  -24.12rem; }
+  14.29% { background-position: -7.5rem -24.12rem; }
+  17.14% { background-position: 0  -36.18rem; }
+  20.00% { background-position: -7.5rem -36.18rem; }
+  22.86% { background-position: 0  -48.24rem; }
+  25.71% { background-position: -7.5rem -48.24rem; }
+  28.57% { background-position: 0  -60.30rem; }
+  31.43% { background-position: -7.5rem -60.30rem; }
+  34.29% { background-position: 0  -72.36rem; }
+  37.14% { background-position: -7.5rem -72.36rem; }
+  40.00% { background-position: 0  -84.42rem; }
+  42.86% { background-position: -7.5rem -84.42rem; }
+  45.71% { background-position: 0  -96.48rem; }
+  48.57% { background-position: -7.5rem -96.48rem; }
+  51.43% { background-position: 0  -108.54rem; }
+  54.29% { background-position: -7.5rem -108.54rem; }
+  57.14% { background-position: 0  -120.60rem; }
+  60.00% { background-position: -7.5rem -120.60rem; }
+  62.86% { background-position: 0  -132.66rem; }
+  65.71% { background-position: -7.5rem -132.66rem; }
+  68.57% { background-position: 0  -144.72rem; }
+  71.43% { background-position: -7.5rem -144.72rem; }
+  74.29% { background-position: 0  -156.78rem; }
+  77.14% { background-position: -7.5rem -156.78rem; }
+  80.00% { background-position: 0  -168.84rem; }
+  82.86% { background-position: -7.5rem -168.84rem; }
+  85.71% { background-position: 0  -180.90rem; }
+  88.57% { background-position: -7.5rem -180.90rem; }
+  91.43% { background-position: 0  -192.96rem; }
+  94.29% { background-position: -7.5rem -192.96rem; }
+  97.14% { background-position: 0  -205.02rem; }
+  100.00% { background-position: -7.5rem -205.02rem; }
+}
+.find-luckydog{
+  position: fixed;
+  width: 4.19rem;
+  height: 1.37rem;
+  color: #fff;
+  background: url(../images/find-luckydog-tip.png)  no-repeat;
+  background-size: contain;
+  margin: 0.5rem auto;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  /*padding-top: 0.54rem;*/
+  -webkit-animation: showanimate 0.5s forwards;
+          animation: showanimate 0.5s forwards;
+}
 
 
 

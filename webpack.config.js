@@ -53,8 +53,7 @@ module.exports = {
   ,
   plugins: [
     new ExtractTextPlugin("./dist/index.css")
-    // ,
-    // new UglifyJsPlugin()
+    ,new UglifyJsPlugin()
   ]
 }
 
